@@ -26,7 +26,7 @@ def main():
         sleep(3)
 
         print('this is main process')
-        print('this is main process from pi')
+        print('this is main process from tt')
 
 
 
