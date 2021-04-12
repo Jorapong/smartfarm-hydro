@@ -26,6 +26,8 @@ def main():
         sleep(3)
 
         print('this is main process')
+        print('this is main process from pi')
+
 
 
 if __name__ == '__main__':
