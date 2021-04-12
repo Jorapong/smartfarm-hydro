@@ -25,6 +25,8 @@ def main():
 
         sleep(3)
 
+        print('this is main process')
+
 
 if __name__ == '__main__':
     main()
