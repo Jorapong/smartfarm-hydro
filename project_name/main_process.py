@@ -1,23 +1,23 @@
 #!/usr/bin/env python
-
+import MySQLdb
+import requests
 from time import sleep
-
 from fertilizer import Fertilizer
 from light import Light
+mydb = MySQLdb.connect(host="localhost",user="root",password="1234",database="farm_db")
+mycursor = mydb.cursor()
 
 
 def main():
+    mydb = MySQLdb.connect(host="localhost",user="root",password="1234",database="farm_db")
+    mycursor = mydb.cursor()
     while True:
-
-        house_list = [1, 2, 3, 4, 5]
-
-        for house_id in house_list:
-
+        mycursor.execute("SELECT veget_id FROM veget")
+        myresult = mycursor.fetchall()
+        for veget_id in myresult:
             print('main')
-
             fertilizer_result = Fertilizer.process_fertilizer()
-            light_result = Light.process_light(house_id=house_id)
-
+            light_result = Light.process_light(veget_id[0])
             print('fertilizer_result', fertilizer_result)
             print('light_result', light_result)
 
