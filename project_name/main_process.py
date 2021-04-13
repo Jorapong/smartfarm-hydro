@@ -4,14 +4,10 @@ import requests
 from time import sleep
 from fertilizer import Fertilizer
 from light import Light
-mydb = MySQLdb.connect(host="localhost",user="root",password="1234",database="farm_db")
-mycursor = mydb.cursor()
-
-
+from connectDB import ConnectDB
 def main():
-    mydb = MySQLdb.connect(host="localhost",user="root",password="1234",database="farm_db")
-    mycursor = mydb.cursor()
     while True:
+        mycursor = ConnectDB.mycursor()
         mycursor.execute("SELECT veget_id FROM veget")
         myresult = mycursor.fetchall()
         for veget_id in myresult:
