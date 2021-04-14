@@ -16,11 +16,19 @@ class Fertilizer:
         for row in myresult:
             ph = row[0]
         return ph
-
+    
+    @classmethod
+    def get_level(self):
+        mycursor = ConnectDB.mycursor()
+        mycursor.execute("SELECT level FROM sensor_value where veget_id="+veget_id)
+        myresult = mycursor.fetchall()
+        for row in myresult:
+            level = row[0]
+        return level
+    
     @classmethod
     def process_fertilizer(self,veget_id):
-
         ec = self.get_ec(veget_id)
         ph = self.get_ph(veget_id)
-
+        level = seft.get_level(veget_id)
         return ec * ph
