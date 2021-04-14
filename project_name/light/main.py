@@ -44,7 +44,7 @@ class Light:
                 return True
             elif light >1200:
                 return True
-        
+        print("test")
         return False
 
     def switch(state):
