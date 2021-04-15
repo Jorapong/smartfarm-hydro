@@ -13,6 +13,7 @@ mydb = MySQLdb.connect(
     password="1234",
     database="farm_db"
 )
+
 topic="@msg/greenHouse/OS/OPEN"
 broker_address="192.168.31.41"
 def on_message(client, userdata, message):
