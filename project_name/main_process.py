@@ -5,10 +5,10 @@ from time import sleep
 from fertilizer import Fertilizer
 from light import Light
 from connectDB import ConnectDB
+ConnectDB.connect()
 def main():
     while True:
-        mycursor = ConnectDB.mycursor()
-        mycursor.execute("SELECT veget_id FROM veget")
+        ConnectDB._cursor.execute("SELECT veget_id FROM veget")
         myresult = mycursor.fetchall()
         for veget_id in myresult:
             print('main')

@@ -1,4 +1,3 @@
-import MySQLdb
 import paho.mqtt.client as mqtt
 import sys
 import time
@@ -8,12 +7,13 @@ from datetime import datetime, date
 
 today = date.today()
 now = datetime.now()
-mydb = MySQLdb.connect(
-    host="localhost",
-    user="root",
-    password="1234",
-    database="farm_db"
-)
+
+topic_list = [
+    ('test/test1', 0),
+    ('test/test2', 0),
+    ('test/test3', 0),
+]
+
 def on_message(client, userdata, message):
     text = str(message.payload.decode("utf-8"))
     print(text)
@@ -26,6 +26,9 @@ def on_message(client, userdata, message):
     #     mydb.commit()
     #     print(mycursor.rowcount, "record updated.")
     # 
+    if (message.topic == "test/test1"):
+        print(1111111111)
+
     print("message received " ,text)  
     print("message topic=",message.topic)
     print("message qos=",message.qos)
@@ -33,16 +36,16 @@ def on_message(client, userdata, message):
     current_time = now.strftime("%H:%M:%S")
     current_date = today.strftime("%d/%m/%Y")
     print("Current  =", current_time, current_date)
-broker_address="192.168.31.49"
+broker_address="127.0.0.1"
 print("creating new instance")
 client = mqtt.Client("RASPI") #create new instance
-client.username_pw_set("mymqtt", "myraspi")
+# client.username_pw_set("mymqtt", "myraspi")
 client.on_message=on_message #attach function to callback
 print("connecting to broker")
 client.connect(broker_address) #connect to broker
 client.loop_start() #start the loop
-print("Subscribing to topic","hidro/sensor")
-client.subscribe([("test/sensor1",1)],[("test/sensor2",0)],[("test/sensor3",1)])
+print("Subscribing to topic","test")
+client.subscribe(topic_list)
 
 while(True):
     #print("Publishing message to topic","mynew/test")
