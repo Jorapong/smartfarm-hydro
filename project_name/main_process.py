@@ -9,7 +9,7 @@ ConnectDB.connect()
 def main():
     while True:
         ConnectDB._cursor.execute("SELECT veget_id FROM veget")
-        myresult = mycursor.fetchall()
+        myresult = ConnectDB._cursor.fetchall()
         for veget_id in myresult:
             print('main')
             fertilizer_result = Fertilizer.process_fertilizer()

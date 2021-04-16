@@ -7,6 +7,7 @@ def on_publish(client,userdata,result):             #create function for callbac
 client1= mqtt.Client("test1")                           #create client object
 client1.on_publish = on_publish                          #assign function to callback
 client1.connect(broker,port)                                 #establish connection
-client1.publish("test/test1","on")    
+client1.publish("hidro/sensor","on")    
 client1.publish("test/test2","off")    
 client1.publish("test/test2","onn")    
+

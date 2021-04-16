@@ -1,84 +1,47 @@
-from connectDB import ConnectDB
-ConnectDB.connect()
+import MySQLdb
+import requests
 class ConnectDB:
     _cursor = None
+    _mydb = None
     @classmethod
     def connect(cls):
-        mydb = MySQLdb.connect(host="localhost",user="root",password="",database="farm_db")
+        cls.mydb = MySQLdb.connect(host="localhost",user="root",password="",database="farm_db")
         cls._cursor = mydb.cursor(MySQLdb.cursors.DictCursor)
         # return mycursor
     
     @classmethod
-    def get_status(cls,name):
-        cls._cursor.execute("SELECT "+name+" FROM status where veget_id=")
+    def get_status(cls,name,veget_id):
+        cls._cursor.execute("SELECT * FROM status where veget_id="+veget_id+" AND name ="+name)
         myresult = mycursor.fetchall()
         return myresult
     
     @classmethod
-    def get_statusveget(cls,name,veget_id):
-        cls._cursor.execute("SELECT "+name+" FROM status where veget_id=")
-        myresult = mycursor.fetchall()
-        return myresult
-
-    @classmethod
-    def get_light(cls,veget_id):
-        sql = "SELECT * FROM sensor_value where sensorv_id={}".format(veget_id)
-        cls._cursor.execute(sql)
-        return cls._cursor.fetchone()
-
-    @classmethod
-    def get_SunscreenOstt(cls):
-        cls._cursor.execute("SELECT sunscreenO FROM status")
-        myresult = mycursor.fetchall()
-        for row in myresult:
-            if row[0]==0:
-                return False
-            elif row[0]==1:
-                return True
-        return False
-    
-    @classmethod
-    def get_SunscreenIstt(cls):
-        cls._cursor.execute("SELECT sunscreenI FROM status")
-        myresult = mycursor.fetchall()
-        for row in myresult:
-            if row[0]==0:
-                return False
-            elif row[0]==1:
-                return True
-        return False
-
-    @classmethod
-    def get_lightstt(cls):
-        cls._cursor.execute("SELECT lightstt FROM status")
-        myresult = mycursor.fetchall()
-        for row in myresult:
-            if row[0]==0:
-                return False
-            elif row[0]==1:
-                return True
-        return False
-    
-        @classmethod
-    def get_ec(cls):
-        cls._cursor.execute("SELECT ec FROM sensor_value where veget_id="+veget_id)
+    def get_valuesensor(cls,sensor,veget_id):
+        cls._cursor.execute("SELECT "+sensor+" FROM sensor_value where veget_id="+veget_id)
         myresult = mycursor.fetchall()
         for row in myresult:
             ec = row[0]
-        return ec
-
-    @classmethod
-    def get_ph(cls):
-        cls._cursor.execute("SELECT ph FROM sensor_value where veget_id="+veget_id)
-        myresult = mycursor.fetchall()
-        for row in myresult:
-            ph = row[0]
-        return ph
+        return ec    
     
     @classmethod
-    def get_level(cls):
-        cls._cursor.execute("SELECT level FROM sensor_value where veget_id="+veget_id)
-        myresult = mycursor.fetchall()
+    def get_values(cls,sensor,veget_id):
+        cls._cursor.execute("SELECT * FROM sensor_value where veget_id="+veget_id)
+        myresult = mycursor.fetchone()
         for row in myresult:
-            level = row[0]
-        return level
+            ec = row[0]
+        return ec    
+    
+    @classmethod
+    def set_status(cls,value,name,veget_id):
+        setstatus =(value,name,veget_id)
+        ConnectDB._cursor.execute("UPDATE name=%s FROM status where name =%s AND veget_id=%s",setstatus)
+        ConnectDB._cursor.fetchall()
+        ConnectDB._mydb.commit()
+        return (ConnectDB._cursor.rowcount,"record "+name+" Update")
+    
+    @classmethod
+    def set_sensorvalue(cls,value):
+        ConnectDB._cursor.execute("UPDATE sensor_value SET ph=%s, ec=%s, flow_pump=%s, light=%s, temp=%s, level=%s where sensorv_id=%s",value)
+        myresult = ConnectDB._cursor.fetchall()
+        ConnectDB._mydb.commit()
+        return (ConnectDB._cursor.rowcount,"record sensor_id "+value['sensor']+" Update")
