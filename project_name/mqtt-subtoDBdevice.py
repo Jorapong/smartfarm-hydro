@@ -6,10 +6,11 @@ from connectDB import ConnectDB
 today = date.today()
 now = datetime.now()
 topic_list = [
-    ('@msg/greenHouse/OS/OPEN', 0),
-    ('@msg/greenHouse/OS/CLOSE', 0),
-    ('@msg/greenHouse/IS/OPEN', 0),
-    ('@msg/greenHouse/IS/CLOSE', 0),
+    ('@msg/greenhouse/#', 0),
+    # ('@msg/greenHouse/OS/OPEN', 0),
+    # ('@msg/greenHouse/OS/CLOSE', 0),
+    # ('@msg/greenHouse/IS/OPEN', 0),
+    # ('@msg/greenHouse/IS/CLOSE', 0),
     ('@msg/hydroponic/light/red', 0),
     ('@msg/hydroponic/light/all', 0),
     ('@msg/fertilizer/bug1/control', 0),
@@ -21,17 +22,22 @@ topic_list = [
 ]
 
 def on_message(client, userdata, message):
+    print("message topic=",message.topic)
     msg = str(message.payload.decode("utf-8"))
-    if (message.topic == topic_list[0][0]): 
-        ConnectDB.set_status(0,"sunscreenOUT",0)
+    print(msg)
+    return
+    if (message.topic == topic_list[0][0]):
+        print("test1")
+        #ConnectDB.set_status(0,"sunscreenOUT",0)
     elif (message.topic == topic_list[1][0]):
-        ConnectDB.set_status(1,"sunscreenOUT",0)
+        print("test2")
+        #ConnectDB.set_status(1,"sunscreenOUT",0)
     elif (message.topic == topic_list[2][0]):
-        ConnectDB.set_status(0,"sunscreenIN",0)
-    elif (message.topic == topic_list[3][0]):
-        ConnectDB.set_status(1,"sunscreenIN",0)
+        print("test3")
+        #ConnectDB.set_status(1,"sunscreenIN",0)
     elif (message.topic == topic_list[4][0]):
-        ConnectDB.set_status(1,"light",1111111)
+        print("test4")
+        #ConnectDB.set_status(1,"light",1111111)
     elif (message.topic == topic_list[5][0]):
         ConnectDB.set_status(0,"light",1111111)
     elif (message.topic == topic_list[6][0] 
@@ -54,7 +60,7 @@ broker_address="127.0.0.1"
 print("creating new instance")
 client = mqtt.Client("RASPI") #create new instance
 # client.username_pw_set("mymqtt", "myraspi")
-client.on_message=on_message #attach function to callback
+client.on_message = on_message #attach function to callback
 print("connecting to broker")
 client.connect(broker_address) #connect to broker
 client.loop_start() #start the loop

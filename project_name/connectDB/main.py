@@ -1,12 +1,14 @@
 import MySQLdb
 import requests
+import time
+from datetime import date
 class ConnectDB:
     _cursor = None
     _mydb = None
     @classmethod
     def connect(cls):
-        cls.mydb = MySQLdb.connect(host="localhost",user="root",password="",database="farm_db")
-        cls._cursor = mydb.cursor(MySQLdb.cursors.DictCursor)
+        cls._mydb = MySQLdb.connect(host="localhost",user="root",password="",database="farm_db")
+        cls._cursor = cls._mydb.cursor(MySQLdb.cursors.DictCursor)
         # return mycursor
     
     @classmethod
@@ -45,3 +47,16 @@ class ConnectDB:
         myresult = ConnectDB._cursor.fetchall()
         ConnectDB._mydb.commit()
         return (ConnectDB._cursor.rowcount,"record sensor_id "+value['sensor']+" Update")
+
+    @classmethod
+    def get_valueveget(cls,veget_id):
+        today = date.today()
+        current_date = today.strftime("%Y-%m-%d")
+        sql = 'select * from veget_value where veget_id={} and date <= "{}" order by date desc'.format(veget_id, current_date)
+        ConnectDB._cursor.execute(sql)
+        myresult = ConnectDB._cursor.fetchone()
+
+        if myresult.get('vegetv_id',None):
+            return myresult
+
+        return False 

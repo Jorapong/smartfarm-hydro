@@ -1,10 +1,21 @@
 from connectDB import ConnectDB
 from mqttsend import Mqttcon
-
+Mqttcon.connect()
 ConnectDB.connect()
+Mqttcon.client.loop_start()
+globalvar = None
+def on_message(client, userdata, message):
+    msg = str(message.payload.decode("utf-8"))
+    process blabla
 class Fertilizer:
     broker="127.0.0.1"
     port=1883
+    Mqttcon.client.on_message = on_message
+    topicflow = ConnectDB.get_sensorvalue("topicflow",veget_id)
+    Mqttcon.client.subscribe('@msg/evthin')
+    veget_id = 
+
+
     @classmethod
     def process_fertilizer(self,veget_id):
         ec = ConnectDB.get_sensorvalue("ec",veget_id)
@@ -13,13 +24,19 @@ class Fertilizer:
         mixer = ConnectDB.get_sensorvalue("mixer",veget_id)
         if  (mixer == 1):
             #ปล่อยนำทื้ง
-            Mqttcon.mqttconnect("@msg/pump/pump1","ON")
-            Mqttcon.mqttconnect("@msg/pump/pump1","OFF")
+            vid=1
+            on_message():
+                unsub(/id)
+            sub(/id)
+            pub
+            Mqttcon.client.publish("@msg/pump/pump1","ON")
+            
+            Mqttcon.client.publish("@msg/pump/pump1","OFF")
         elif (mixer == 0):
             level = 
             fertilizerml=ec+ec #แก้สูตร
             waterml=ec #แก้สูตร
-            Mqttcon.mqttconnect("@msg/fertilizer/fertilizer1/control",fertilizerml)
-            Mqttcon.mqttconnect("@msg/fertilizer/water/control",waterml)
-            Mqttcon.mqttconnect("@msg/pump/pump1","ON")
+            Mqttcon.client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)
+            Mqttcon.client.publish("@msg/fertilizer/water/control",waterml)
+            Mqttcon.client.publish("@msg/pump/pump1","ON")
         return False
