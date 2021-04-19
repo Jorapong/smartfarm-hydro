@@ -14,13 +14,13 @@ class ConnectDB:
     @classmethod
     def get_status(cls,name,veget_id):
         cls._cursor.execute("SELECT * FROM status where veget_id="+veget_id+" AND name ="+name)
-        myresult = mycursor.fetchall()
+        myresult = cls._cursor.fetchall()
         return myresult
     
     @classmethod
     def get_valuesensor(cls,sensor,veget_id):
         cls._cursor.execute("SELECT "+sensor+" FROM sensor_value where veget_id="+veget_id)
-        myresult = mycursor.fetchall()
+        myresult = cls._cursor.fetchall()
         for row in myresult:
             ec = row[0]
         return ec    
@@ -28,7 +28,7 @@ class ConnectDB:
     @classmethod
     def get_values(cls,sensor,veget_id):
         cls._cursor.execute("SELECT * FROM sensor_value where veget_id="+veget_id)
-        myresult = mycursor.fetchone()
+        myresult = cls._cursor.fetchone()
         for row in myresult:
             ec = row[0]
         return ec    
@@ -51,12 +51,17 @@ class ConnectDB:
     @classmethod
     def get_valueveget(cls,veget_id):
         today = date.today()
-        cls = today.strftime("%Y-%m-%d")
+        current_date = today.strftime("%Y-%m-%d")
         sql = 'select * from veget_value where veget_id={} and date <= "{}" order by date desc'.format(veget_id, current_date)
         cls._cursor.execute(sql)
         myresult = ConnectDB._cursor.fetchone()
-
         if myresult.get('vegetv_id',None):
             return myresult
-
         return False 
+
+    @classmethod
+    def get_fertilizer(cls,fertilizer_id):
+        sql = "SELECT * FROM fertilizer where fertilizer_id={}".format(fertilizer_id)
+        cls._cursor.execute(sql)
+        myresult = cls._cursor.fetchone()
+        return myresult   

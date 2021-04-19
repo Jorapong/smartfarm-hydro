@@ -6,11 +6,7 @@ from connectDB import ConnectDB
 today = date.today()
 now = datetime.now()
 topic_list = [
-    ('@msg/greenhouse/#', 0),
-    # ('@msg/greenHouse/OS/OPEN', 0),
-    # ('@msg/greenHouse/OS/CLOSE', 0),
-    # ('@msg/greenHouse/IS/OPEN', 0),
-    # ('@msg/greenHouse/IS/CLOSE', 0),
+    ('@msg/#', 0),
     ('@msg/hydroponic/light/red', 0),
     ('@msg/hydroponic/light/all', 0),
     ('@msg/fertilizer/bug1/control', 0),
@@ -22,28 +18,27 @@ topic_list = [
 ]
 
 def on_message(client, userdata, message):
-    print("message topic=",message.topic)
     msg = str(message.payload.decode("utf-8"))
-    print(msg)
-    return
-    if (message.topic == topic_list[0][0]):
-        print("test1")
-        #ConnectDB.set_status(0,"sunscreenOUT",0)
-    elif (message.topic == topic_list[1][0]):
-        print("test2")
-        #ConnectDB.set_status(1,"sunscreenOUT",0)
-    elif (message.topic == topic_list[2][0]):
-        print("test3")
-        #ConnectDB.set_status(1,"sunscreenIN",0)
-    elif (message.topic == topic_list[4][0]):
-        print("test4")
-        #ConnectDB.set_status(1,"light",1111111)
+    if (message.topic == '@msg/greenHouse/OS/OPEN'):
+        ConnectDB.set_status(0,"sunscreenOUT",0)
+
+    elif (message.topic == '@msg/greenHouse/OS/CLOSE'):
+        ConnectDB.set_status(1,"sunscreenOUT",0)
+
+    elif (message.topic == '@msg/greenHouse/IS/OPEN'):
+        ConnectDB.set_status(1,"sunscreenIN",0)
+
+    elif (message.topic == '@msg/greenHouse/IS/CLOSE'):
+        ConnectDB.set_status(1,"light",1111111)
+
     elif (message.topic == topic_list[5][0]):
         ConnectDB.set_status(0,"light",1111111)
+
     elif (message.topic == topic_list[6][0] 
     or message.topic == topic_list[7][0] 
     or message.topic == topic_list[8][0]):
         ConnectDB.set_status(1,"mixer",0)
+
     elif (message.topic == topic_list[8][0]
     or message.topic == topic_list[9][0]
     or message.topic == topic_list[10][0]):

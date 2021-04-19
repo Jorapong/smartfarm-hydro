@@ -16,26 +16,31 @@ class Fertilizer:
 
 
     @classmethod
-    def process_fertilizer(self,veget_id):
-        ec = ConnectDB.get_sensorvalue("ec",veget_id)
-        ph = ConnectDB.get_sensorvalue("ph",veget_id)
-        level = ConnectDB.get_sensorvalue("level",veget_id)
-        mixer = ConnectDB.get_sensorvalue("mixer",veget_id)
+    def process_fertilizer(self,veget):
+        ec = ConnectDB.get_sensorvalue("ec",veget['sensorv_id']) #ec ที่วัดได้
+        ph = ConnectDB.get_sensorvalue("ph",veget['sensorv_id']) #pH ที่วัดได้
+        valueveget = ConnectDB.get_valueveget(veget['veget_id']) #ค่า ที่ต้องการ
+        fertilizerintense = ConnectDB.get_fertilizer(veget['fertilizer_id']) #ความเข้มข้นปุ๋ย
+        level = ConnectDB.get_sensorvalue("level",veget['veget_id']) #ระดับน้ำ
+        mixer = ConnectDB.get_sensorvalue("mixer",0) #สถานะถังน้ำ
         if  (mixer == 1):
             #ปล่อยนำทื้ง
-            vid=1
-            on_message():
-                unsub(/id)
-            sub(/id)
-            pub
-            Mqttcon.client.publish("@msg/pump/pump1","ON")
+            Mqttcon.client.publish("@msg/pump/pump1","on")
             Mqttcon.client.on_message = on_message
-            Mqttcon.client.publish("@msg/pump/pump1","OFF")
+            Mqttcon.client.publish("@msg/pump/pump1","off")
         elif (mixer == 0):
-            level = 
-            fertilizerml=ec+ec #แก้สูตร
-            waterml=ec #แก้สูตร
-            Mqttcon.client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)
-            Mqttcon.client.publish("@msg/fertilizer/water/control",waterml)
-            Mqttcon.client.publish("@msg/pump/pump1","ON")
+            if(ec <= (valueveget['ec']-1)):
+                fertilizer = (ec - valueveget['ec'])level
+                fertilizerml = fertilizer * 1000
+                Mqttcon.client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)
+                Mqttcon.client.publish("@msg/pump/pump2","on")
+                waterml = (fertilizerml/20)/2
+                Mqttcon.client.publish("@msg/fertilizer/water/control",waterml)
+                Mqttcon.client.publish("@msg/pump/pump1","on")
+            elif(ec >= (valueveget['ec']+1):
+                Mqttcon.client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)
+                Mqttcon.client.publish("@msg/pump/pump2","on")
+                waterml = (fertilizerml/20)/2
+                Mqttcon.client.publish("@msg/fertilizer/water/control",waterml)
+                Mqttcon.client.publish("@msg/pump/pump1","on")
         return False

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 from connectDB import ConnectDB
 ConnectDB.connect()
-print(ConnectDB.get_valueveget(11111111))
-
-ec_table(f_id, ec_diff, water_v)
+print(ConnectDB.get_fertilizer(1))

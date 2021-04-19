@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 import MySQLdb
 import requests
 from time import sleep
@@ -13,7 +14,7 @@ def main():
         for veget_id in myresult:
             print('main')
             fertilizer_result = Fertilizer.process_fertilizer()
-            light_result = Light.process_light(veget_id[0])
+            light_result = Light.process_light(veget_id)
             print('fertilizer_result', fertilizer_result)
             print('light_result', light_result)
 
