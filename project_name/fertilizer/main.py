@@ -1,19 +1,18 @@
 from connectDB import ConnectDB
 from mqttsend import Mqttcon
+import json
 Mqttcon.connect()
 ConnectDB.connect()
 Mqttcon.client.loop_start()
-globalvar = None
+Flow = None
 def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
-    process blabla
+    if ()
 class Fertilizer:
     broker="127.0.0.1"
     port=1883
-    Mqttcon.client.on_message = on_message
     topicflow = ConnectDB.get_sensorvalue("topicflow",veget_id)
     Mqttcon.client.subscribe('@msg/evthin')
-    veget_id = 
 
 
     @classmethod
@@ -30,7 +29,7 @@ class Fertilizer:
             sub(/id)
             pub
             Mqttcon.client.publish("@msg/pump/pump1","ON")
-            
+            Mqttcon.client.on_message = on_message
             Mqttcon.client.publish("@msg/pump/pump1","OFF")
         elif (mixer == 0):
             level = 

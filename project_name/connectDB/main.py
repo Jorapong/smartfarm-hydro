@@ -36,24 +36,24 @@ class ConnectDB:
     @classmethod
     def set_status(cls,value,name,veget_id):
         setstatus =(value,name,veget_id)
-        ConnectDB._cursor.execute("UPDATE name=%s FROM status where name =%s AND veget_id=%s",setstatus)
-        ConnectDB._cursor.fetchall()
-        ConnectDB._mydb.commit()
+        cls._cursor.execute("UPDATE name=%s FROM status where name =%s AND veget_id=%s",setstatus)
+        cls._cursor.fetchall()
+        cls._mydb.commit()
         return (ConnectDB._cursor.rowcount,"record "+name+" Update")
     
     @classmethod
     def set_sensorvalue(cls,value):
-        ConnectDB._cursor.execute("UPDATE sensor_value SET ph=%s, ec=%s, flow_pump=%s, light=%s, temp=%s, level=%s where sensorv_id=%s",value)
-        myresult = ConnectDB._cursor.fetchall()
-        ConnectDB._mydb.commit()
+        cls._cursor.execute("UPDATE sensor_value SET ph=%s, ec=%s, flow_pump=%s, light=%s, temp=%s, level=%s where sensorv_id=%s",value)
+        myresult = cls._cursor.fetchall()
+        cls._mydb.commit()
         return (ConnectDB._cursor.rowcount,"record sensor_id "+value['sensor']+" Update")
 
     @classmethod
     def get_valueveget(cls,veget_id):
         today = date.today()
-        current_date = today.strftime("%Y-%m-%d")
+        cls = today.strftime("%Y-%m-%d")
         sql = 'select * from veget_value where veget_id={} and date <= "{}" order by date desc'.format(veget_id, current_date)
-        ConnectDB._cursor.execute(sql)
+        cls._cursor.execute(sql)
         myresult = ConnectDB._cursor.fetchone()
 
         if myresult.get('vegetv_id',None):
