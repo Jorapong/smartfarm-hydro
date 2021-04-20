@@ -13,14 +13,12 @@ def main():
         myresult = ConnectDB._cursor.fetchall()
         for veget_id in myresult:
             print('main')
-            fertilizer_result = Fertilizer.process_fertilizer()
+            # fertilizer_result = Fertilizer.process_fertilizer()
             light_result = Light.process_light(veget_id)
             print('fertilizer_result', fertilizer_result)
             print('light_result', light_result)
 
             Light.switch(1)
-
-        sleep(3)
 
         print('this is main process')
         print('this is main process from Pi')
