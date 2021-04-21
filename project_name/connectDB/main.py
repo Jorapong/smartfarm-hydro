@@ -15,23 +15,14 @@ class ConnectDB:
     def get_status(cls,name,veget_id):
         cls._cursor.execute("SELECT * FROM status where veget_id="+veget_id+" AND name ="+name)
         myresult = cls._cursor.fetchall()
-        return myresult
+        return myresult    
     
     @classmethod
-    def get_valuesensor(cls,sensor,veget_id):
-        cls._cursor.execute("SELECT "+sensor+" FROM sensor_value where veget_id="+veget_id)
-        myresult = cls._cursor.fetchall()
-        for row in myresult:
-            ec = row[0]
-        return ec    
-    
-    @classmethod
-    def get_values(cls,sensor,veget_id):
-        cls._cursor.execute("SELECT * FROM sensor_value where veget_id="+veget_id)
+    def get_values(cls,veget_id):
+        sql ="SELECT * FROM sensor_value where veget_id={}".format(veget_id)
+        cls._cursor.execute(sql)
         myresult = cls._cursor.fetchone()
-        for row in myresult:
-            ec = row[0]
-        return ec    
+        return myresult    
     
     @classmethod
     def set_status(cls,value,name,veget_id):
@@ -64,4 +55,4 @@ class ConnectDB:
         sql = "SELECT * FROM fertilizer where fertilizer_id={}".format(fertilizer_id)
         cls._cursor.execute(sql)
         myresult = cls._cursor.fetchone()
-        return myresult   
+        return myresult  

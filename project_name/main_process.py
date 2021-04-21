@@ -11,11 +11,11 @@ def main():
     while True:
         ConnectDB._cursor.execute("SELECT * FROM veget")
         myresult = ConnectDB._cursor.fetchall()
-        print(myresult)
         for value in myresult:
             print('main')
+            veget_id=value['veget_id']
             # fertilizer_result = Fertilizer.process_fertilizer()
-            light_result = Light.process_light(value['veget_id'])
+            light_result = Light.process_light(veget_id)
             #print('fertilizer_result', fertilizer_result)
             print('light_result', light_result)
         print('this is main process from Pi')
