@@ -1,4 +1,5 @@
-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 import paho.mqtt.client as mqtt
 import time
 import ast

@@ -12,7 +12,7 @@ class Light:
             print('ปิดไฟ')
             # Mqttcon.mqttconnect("@msg/hydroponic/light/all","OFF")
             if ConnectDB.get_status(4,0) == 0:
-                print('ปิดสแลนด้านนอก')
+                print('pyhton')
                 # Mqttcon.mqttconnect("@msg/greenHouse/OS/CLOSE","off")
                 # Mqttcon.mqttconnect("@msg/greenHouse/OS/CLOSE","on")
                 #ClosesunscreenOUT

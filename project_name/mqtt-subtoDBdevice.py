@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 import paho.mqtt.client as mqtt
 import time
 from datetime import datetime, date
