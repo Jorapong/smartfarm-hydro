@@ -7,7 +7,7 @@ ConnectDB.connect()
 class Light:
     @classmethod
     def process_light(cls,veget_id):
-        light = ConnectDB.get_value("light",veget_id)
+        light = ConnectDB.get_values("light",veget_id)
         if light < 310 : #แสงมาก
             print('ปิดไฟ')
             # Mqttcon.mqttconnect("@msg/hydroponic/light/all","OFF")
