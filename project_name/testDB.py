@@ -12,4 +12,6 @@ for value in myresult:
     print('main')
     veget_id=value['veget_id']
     print(veget_id)
+    light = ConnectDB.get_values("light",veget_id)
+    print(light)
 print('this is main process from Pi')
