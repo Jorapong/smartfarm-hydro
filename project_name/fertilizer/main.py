@@ -4,11 +4,6 @@ import json
 Mqttcon.connect()
 ConnectDB.connect()
 class Fertilizer:
-    broker="127.0.0.1"
-    port=1883
-    topicflow = ConnectDB.get_sensorvalue("topicflow",veget_id)
-    Mqttcon.client.subscribe('@msg/evthin')
-
 
     @classmethod
     def process_fertilizer(self,veget):
@@ -31,7 +26,8 @@ class Fertilizer:
                 Mqttcon.client.publish("@msg/pump/pump2","on")
                 if(ph <= (valueveget['ph']-1)):#phต่ำ
                     waterml = ((fertilizerml/20)/2)/(ph-valueveget['ph'])#คำนวนหาน้ำที่ต้องเติมตามค่า ph
-                waterml = (fertilizerml/20)/2 #คำนวนหาน้ำที่ต้องเติม
+                else:
+                    waterml = (fertilizerml/20)/2 #คำนวนหาน้ำที่ต้องเติม
                 Mqttcon.client.publish("@msg/fertilizer/water/control",waterml)#เติมน้ำเพื่อผสม
                 Mqttcon.client.publish("@msg/pump/pump1","on")
                 Mqttcon.client.publish("@msg/htdroponic/htdroponic1","on")

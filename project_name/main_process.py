@@ -17,10 +17,6 @@ def main():
             light_result = Light.process_light(veget_id)
             print('fertilizer_result', fertilizer_result)
             print('light_result', light_result)
-
-            Light.switch(1)
-
-        print('this is main process')
         print('this is main process from Pi')
 
 
