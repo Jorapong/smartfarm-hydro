@@ -3,7 +3,7 @@
 import MySQLdb
 import requests
 from time import sleep
-from fertilizer import Fertilizer
+#from fertilizer import Fertilizer
 from light import Light
 from connectDB import ConnectDB
 ConnectDB.connect()
