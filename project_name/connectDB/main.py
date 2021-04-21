@@ -46,7 +46,7 @@ class ConnectDB:
         cls._cursor.execute("UPDATE sensor_value SET ph=%s, ec=%s, flow_pump=%s, light=%s, temp=%s, level=%s where sensorv_id=%s",value)
         myresult = cls._cursor.fetchall()
         cls._mydb.commit()
-        return (ConnectDB._cursor.rowcount,"record sensor_id "+value[6]+" Update")
+        return (ConnectDB._cursor.rowcount,"record sensor_id "+str(value[6])+" Update")
 
     @classmethod
     def get_valueveget(cls,veget_id):
