@@ -8,7 +8,7 @@ class Light:
     @classmethod
     def process_light(self, veget_id):
         light = self.get_light(veget_id)
-        if light < 315 : #แสงมาก
+        if light < 310 : #แสงมาก
             Mqttcon.mqttconnect("@msg/hydroponic/light/all","OFF")
             if ConnectDB.get_status("sunscreenIN",0) == 0:
                 Mqttcon.mqttconnect("'@msg/greenHouse/OS/CLOSE","off")

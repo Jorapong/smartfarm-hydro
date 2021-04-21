@@ -29,19 +29,19 @@ def on_message(client, userdata, message):
         ConnectDB.set_status(1,"sunscreenIN",0)
 
     elif (message.topic == '@msg/greenHouse/IS/CLOSE'):
-        ConnectDB.set_status(1,"light",1111111)
+        ConnectDB.set_status(1,"light",11111111)
 
     elif (message.topic == topic_list[5][0]):
-        ConnectDB.set_status(0,"light",1111111)
+        ConnectDB.set_status(0,"light",11111111)
 
-    elif (message.topic == topic_list[6][0] 
-    or message.topic == topic_list[7][0] 
-    or message.topic == topic_list[8][0]):
+    elif (message.topic == topic_list[3][0] 
+    or message.topic == topic_list[4][0] 
+    or message.topic == topic_list[5][0]):
         ConnectDB.set_status(1,"mixer",0)
 
-    elif (message.topic == topic_list[8][0]
-    or message.topic == topic_list[9][0]
-    or message.topic == topic_list[10][0]):
+    elif (message.topic == topic_list[6][0]
+    or message.topic == topic_list[7][0]
+    or message.topic == topic_list[8][0]):
         ConnectDB.set_status(0,"mixer",0)
 
     print("message received " ,msg)  
