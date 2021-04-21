@@ -9,13 +9,13 @@ from connectDB import ConnectDB
 ConnectDB.connect()
 def main():
     while True:
-        ConnectDB._cursor.execute("SELECT veget_id FROM veget")
+        ConnectDB._cursor.execute("SELECT * FROM veget")
         myresult = ConnectDB._cursor.fetchall()
-        for veget_id in myresult:
+        for value in myresult:
             print('main')
             # fertilizer_result = Fertilizer.process_fertilizer()
-            light_result = Light.process_light(veget_id)
-            print('fertilizer_result', fertilizer_result)
+            light_result = Light.process_light(value['veget_id'])
+            #print('fertilizer_result', fertilizer_result)
             print('light_result', light_result)
         print('this is main process from Pi')
 
