@@ -11,6 +11,7 @@ def main():
     while True:
         ConnectDB._cursor.execute("SELECT * FROM veget")
         myresult = ConnectDB._cursor.fetchall()
+        print(myresult)
         for value in myresult:
             print('main')
             # fertilizer_result = Fertilizer.process_fertilizer()
