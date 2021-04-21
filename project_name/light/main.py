@@ -5,8 +5,8 @@ from connectDB import ConnectDB
 ConnectDB.connect()
 # Mqttcon.mqttconnect()
 class Light:
-    
-    def process_light(self,veget_id):
+    @classmethod
+    def process_light(cls,veget_id):
         light = ConnectDB.get_value("light",veget_id)
         if light < 310 : #แสงมาก
             print('ปิดไฟ')
