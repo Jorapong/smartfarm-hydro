@@ -51,7 +51,7 @@ def on_message(client, userdata, message):
     current_time = now.strftime("%H:%M:%S")
     current_date = today.strftime("%d/%m/%Y")
     print("Current  =", current_time, current_date)
-broker_address="127.0.0.1"
+broker_address="192.168.31.41"
 print("creating new instance")
 client = mqtt.Client("RASPI") #create new instance
 # client.username_pw_set("mymqtt", "myraspi")
