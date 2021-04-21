@@ -18,8 +18,8 @@ class ConnectDB:
         return myresult    
     
     @classmethod
-    def get_values(cls,veget_id):
-        sql ="SELECT * FROM sensor_value where veget_id={}".format(veget_id)
+    def get_values(cls,value,veget_id):
+        sql ="SELECT {} FROM sensor_value where veget_id={}".format(value,veget_id)
         cls._cursor.execute(sql)
         myresult = cls._cursor.fetchone()
         return myresult    
