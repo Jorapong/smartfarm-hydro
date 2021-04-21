@@ -1,9 +1,9 @@
 import MySQLdb
 import requests
 from connectDB import ConnectDB
-from mqttsend import Mqttcon
+# from mqttsend import Mqttcon
 ConnectDB.connect()
-Mqttcon.mqttconnect()
+# Mqttcon.mqttconnect()
 class Light:
     @classmethod
     def process_light(self, veget_id):

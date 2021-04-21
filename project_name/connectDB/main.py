@@ -7,7 +7,7 @@ class ConnectDB:
     _mydb = None
     @classmethod
     def connect(cls):
-        cls._mydb = MySQLdb.connect(host="localhost",user="root",password="1234",database="farm_db")
+        cls._mydb = MySQLdb.connect(host="localhost",user="root",password="",database="farm_db")
         cls._cursor = cls._mydb.cursor(MySQLdb.cursors.DictCursor)
         # return mycursor
     
