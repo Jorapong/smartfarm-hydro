@@ -12,8 +12,8 @@ class ConnectDB:
         # return mycursor
     
     @classmethod
-    def get_status(cls,name,veget_id):
-        sql="SELECT * FROM status where veget_id={} AND name ={}".format(veget_id,name)
+    def get_status(cls,status_id,veget_id):
+        sql="SELECT * FROM status where veget_id={} AND status_id ={}".format(veget_id,status_id)
         cls._cursor.execute(sql)
         myresult = cls._cursor.fetchone()
         return myresult['status']    
