@@ -13,7 +13,8 @@ class ConnectDB:
     
     @classmethod
     def get_status(cls,name,veget_id):
-        cls._cursor.execute("SELECT * FROM status where veget_id="+veget_id+" AND name ="+name)
+        sql="SELECT * FROM status where veget_id={} AND name ={}".format(veget_id,name)
+        cls._cursor.execute()
         myresult = cls._cursor.fetchall()
         return myresult    
     
