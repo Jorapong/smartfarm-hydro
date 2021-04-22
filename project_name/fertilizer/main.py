@@ -31,6 +31,8 @@ class Fertilizer:
                 fertilizerml = fertilizer * 1000
                 # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)#เติมปุ๋ยที่ยังไม่ผสม
                 # client.publish("@msg/pump/pump2","on")
+                print(fertilizer)
+                print(fertilizerml)
                 sleep(10)
                 if(ph <= (valueveget['ph']-0.1)):#phต่ำ
                     waterml = ((fertilizerml/20)/2)#คำนวนหาน้ำที่ต้องเติมตามค่า ph
