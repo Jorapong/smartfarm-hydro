@@ -19,7 +19,7 @@ class Light:
             print('ปิดไฟ')
             client.publish("@msg/hydroponic/light/all","OFF")
             if ConnectDB.get_status(4,0) == 0:
-                print('pyhton')
+                print('ปิดสแลนด้านนอก')
                 client.publish("@msg/greenHouse/OS/CLOSE","off")
                 client.publish("@msg/greenHouse/OS/CLOSE","on")
                 #ClosesunscreenOUT

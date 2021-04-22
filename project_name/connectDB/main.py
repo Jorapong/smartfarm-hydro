@@ -26,12 +26,12 @@ class ConnectDB:
         return myresult[value]    
     
     @classmethod
-    def set_status(cls,value,status_id,veget_id):
-        sql ="UPDATE status SET status ={} where status_id ={} AND veget_id={}".format(value,status_id,veget_id)
+    def set_status(cls,value,status_id):
+        sql ="UPDATE status SET status ={} where status_id ={}".format(value,status_id)
         cls._cursor.execute(sql)
         cls._cursor.fetchall()
         cls._mydb.commit()
-        return (ConnectDB._cursor.rowcount,"record "+name+" Update")
+        return (ConnectDB._cursor.rowcount,"record Update")
     
     @classmethod
     def set_sensorvalue(cls,value):

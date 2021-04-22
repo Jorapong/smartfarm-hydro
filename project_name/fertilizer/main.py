@@ -3,8 +3,12 @@ from mqttsend import Mqttcon
 import json
 Mqttcon.connect()
 ConnectDB.connect()
+import paho.mqtt.client as mqtt #import the client1
+broker_address="192.168.31.41" 
+client = mqtt.Client("P1")
+client.username_pw_set("smartfarm", "123456788")
+client.connect(broker_address)
 class Fertilizer:
-
     @classmethod
     def process_fertilizer(self,veget):
         ec = ConnectDB.get_sensorvalue("ec",veget['sensorv_id']) #ec ที่วัดได้
@@ -16,32 +20,32 @@ class Fertilizer:
         pump1 = ConnectDB.get_sensorvalue("pump1",0) #สถานะถังน้ำ
         if  (mixer == 1 and pump1==0):
             #ปล่อยนำทื้ง
-            Mqttcon.client.publish("@msg/pump/pump1","on")
-            Mqttcon.client.publish("@msg/pump/pump1","off")
+            client.publish("@msg/pump/pump1","on")
+            client.publish("@msg/pump/pump1","off")
         elif (mixer == 0 and pump1==0):
             if(ec <= (valueveget['ec']-1)):
                 fertilizer = (ec - valueveget['ec'])*level #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
                 fertilizerml = fertilizer * 1000
-                Mqttcon.client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)#เติมปุ๋ยที่ยังไม่ผสม
-                Mqttcon.client.publish("@msg/pump/pump2","on")
+                client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)#เติมปุ๋ยที่ยังไม่ผสม
+                client.publish("@msg/pump/pump2","on")
                 if(ph <= (valueveget['ph']-1)):#phต่ำ
                     waterml = ((fertilizerml/20)/2)/(ph-valueveget['ph'])#คำนวนหาน้ำที่ต้องเติมตามค่า ph
                 else:
                     waterml = (fertilizerml/20)/2 #คำนวนหาน้ำที่ต้องเติม
-                Mqttcon.client.publish("@msg/fertilizer/water/control",waterml)#เติมน้ำเพื่อผสม
-                Mqttcon.client.publish("@msg/pump/pump1","on")
-                Mqttcon.client.publish("@msg/htdroponic/htdroponic1","on")
-                Mqttcon.client.publish("@msg/greenHouse/flowfertilizer2/flow",fertilizerml)#เติมปุ๋ยที่ผสมแล้ว
-                Mqttcon.client.publish("@msg/greenHouse/flowfertilizer2/flow",3000)#เติมน้ำล้างท่อ
-                Mqttcon.client.publish("@msg/htdroponic/htdroponic1","off")
+                client.publish("@msg/fertilizer/water/control",waterml)#เติมน้ำเพื่อผสม
+                client.publish("@msg/pump/pump1","on")
+                client.publish("@msg/htdroponic/htdroponic1","on")
+                client.publish("@msg/pump/flow2",fertilizerml)#เติมปุ๋ยที่ผสมแล้ว
+                client.publish("@msg/pump/flow2",3000)#เติมน้ำล้างท่อ
+                client.publish("@msg/htdroponic/htdroponic1","off")
                 return True
                 
             elif(ec >= (valueveget['ec']+1)):
                 water=ec-valueveget['ec']#คำนวนปริมาณเพื่อเจือจาง
-                Mqttcon.client.publish("@msg/htdroponic/htdroponic1","on")
-                Mqttcon.client.publish("@msg/greenHouse/water","on")
-                Mqttcon.client.publish("@msg/greenHouse/flowfertilizer2/flow",water)#เติมน้ำเพื่อนเจือจาง
-                Mqttcon.client.publish("@msg/pump/pump1","on")
-                Mqttcon.client.publish("@msg/htdroponic/htdroponic1","off")
+                client.publish("@msg/htdroponic/htdroponic1","on")
+                client.publish("@msg/greenHouse/water","on")
+                client.publish("@msg/pump/flow2",water)#เติมน้ำเพื่อนเจือจาง
+                client.publish("@msg/pump/pump1","on")
+                client.publish("@msg/htdroponic/htdroponic1","off")
                 return True
         return False

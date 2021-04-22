@@ -21,44 +21,44 @@ topic_list = [
 def on_message(client, userdata, message):
     msg = str(message.payload.decode("utf-8"))
     if (message.topic == '@msg/greenHouse/OS/OPEN'):
-        ConnectDB.set_status(1,"sunscreenOUT",0)
+        ConnectDB.set_status(1,3)
 
     elif (message.topic == '@msg/greenHouse/OS/CLOSE'):
-        ConnectDB.set_status(0,"sunscreenOUT",0)
+        ConnectDB.set_status(0,3)
 
     elif (message.topic == '@msg/greenHouse/IS/OPEN'):
-        ConnectDB.set_status(1,"sunscreenIN",0)
+        ConnectDB.set_status(1,4)
 
     elif (message.topic == '@msg/greenHouse/IS/CLOSE'):
-        ConnectDB.set_status(0,"sunscreenIN",0)
+        ConnectDB.set_status(0,4)
 
     elif (message.topic == topic_list[1][0]and msg=="on"):
-        ConnectDB.set_status(1,"light",11111111)
+        ConnectDB.set_status(1,5)
 
     elif (message.topic == topic_list[1][0]and msg=="off"):
-        ConnectDB.set_status(0,"light",11111111)
+        ConnectDB.set_status(0,5)
 
     elif (message.topic == topic_list[2][0] 
     or message.topic == topic_list[3][0] 
     or message.topic == topic_list[4][0]):
-        ConnectDB.set_status(1,"mixer",0)
+        ConnectDB.set_status(1,6)
 
     elif (message.topic == topic_list[5][0]
     or message.topic == topic_list[6][0]
     or message.topic == topic_list[7][0]):
-        ConnectDB.set_status(0,"mixer",0)
+        ConnectDB.set_status(0,6)
 
     elif (message.topic == '@msg/pump/pump1' and msg=="on"):
-        ConnectDB.set_status(1,"pump1",0)
+        ConnectDB.set_status(1,1)
 
     elif (message.topic == '@msg/pump/pump1' and msg=="off"):
-        ConnectDB.set_status(0,"pump1",0)
+        ConnectDB.set_status(0,1)
 
     elif (message.topic == '@msg/pump/pump2' and msg=="on"):
-        ConnectDB.set_status(1,"pump1",0)
+        ConnectDB.set_status(1,2)
 
     elif (message.topic == '@msg/pump/pump2' and msg=="off"):
-        ConnectDB.set_status(0,"pump1",0)
+        ConnectDB.set_status(0,2)
         
     print("message received " ,msg)  
     print("message topic=",message.topic)
