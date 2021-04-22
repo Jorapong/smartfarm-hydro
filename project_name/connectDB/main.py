@@ -27,7 +27,7 @@ class ConnectDB:
     
     @classmethod
     def set_status(cls,value,status_id):
-        sql ="UPDATE status SET status =%s where status_id ={}".format(value,status_id)
+        sql ="UPDATE status SET status ={} where status_id ={}".format(value,status_id)
         cls._cursor.execute(sql)
         cls._cursor.fetchall()
         cls._mydb.commit()
