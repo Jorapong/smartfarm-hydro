@@ -21,6 +21,7 @@ class Fertilizer:
         mixer = ConnectDB.get_status(6,0) #สถานะถังน้ำ
         pump1 = ConnectDB.get_status(1,0) #สถานะถังน้ำ
         print(ec)
+        0.8
         if  (mixer == 1 and pump1==0):
             #ปล่อยนำทื้ง
             pass
@@ -28,7 +29,7 @@ class Fertilizer:
             #client.publish("@msg/pump/pump1","off")
         elif (mixer == 0 and pump1==0):
             if(ec <= (valueveget['ec']-0.1)):
-                fertilizer = (ec - valueveget['ec'])*100000 #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
+                fertilizer = (valueveget['ec']-ec)*100000 #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
                 fertilizerml = fertilizer * 1000
                 # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)#เติมปุ๋ยที่ยังไม่ผสม
                 # client.publish("@msg/pump/pump2","on")
