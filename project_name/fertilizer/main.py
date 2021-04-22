@@ -1,6 +1,7 @@
 from connectDB import ConnectDB
 from mqttsend import Mqttcon
 import json
+from time import sleep
 Mqttcon.connect()
 ConnectDB.connect()
 import paho.mqtt.client as mqtt #import the client1
@@ -20,27 +21,29 @@ class Fertilizer:
         pump1 = ConnectDB.get_sensorvalue("pump1",0) #สถานะถังน้ำ
         if  (mixer == 1 and pump1==0):
             #ปล่อยนำทื้ง
-            client.publish("@msg/pump/pump1","on")
-            client.publish("@msg/pump/pump1","off")
+            pass
+            #client.publish("@msg/pump/pump1","on")
+            #client.publish("@msg/pump/pump1","off")
         elif (mixer == 0 and pump1==0):
-            if(ec <= (valueveget['ec']-1)):
-                fertilizer = (ec - valueveget['ec'])*level #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
+            if(ec <= (valueveget['ec']-0.1)):
+                fertilizer = (ec - valueveget['ec'])*100000 #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
                 fertilizerml = fertilizer * 1000
                 client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)#เติมปุ๋ยที่ยังไม่ผสม
                 client.publish("@msg/pump/pump2","on")
-                if(ph <= (valueveget['ph']-1)):#phต่ำ
-                    waterml = ((fertilizerml/20)/2)/(ph-valueveget['ph'])#คำนวนหาน้ำที่ต้องเติมตามค่า ph
+                sleep(10)
+                if(ph <= (valueveget['ph']-0.1)):#phต่ำ
+                    waterml = ((fertilizerml/20)/2)#คำนวนหาน้ำที่ต้องเติมตามค่า ph
                 else:
                     waterml = (fertilizerml/20)/2 #คำนวนหาน้ำที่ต้องเติม
                 client.publish("@msg/fertilizer/water/control",waterml)#เติมน้ำเพื่อผสม
                 client.publish("@msg/pump/pump1","on")
-                client.publish("@msg/htdroponic/htdroponic1","on")
+                client.publish("@msg/htdroponic/htdroponic2","on")
                 client.publish("@msg/pump/flow2",fertilizerml)#เติมปุ๋ยที่ผสมแล้ว
                 client.publish("@msg/pump/flow2",3000)#เติมน้ำล้างท่อ
-                client.publish("@msg/htdroponic/htdroponic1","off")
+                client.publish("@msg/htdroponic/htdroponic2","off")
                 return True
                 
-            elif(ec >= (valueveget['ec']+1)):
+            elif(ec >= (valueveget['ec']+0.1)):
                 water=ec-valueveget['ec']#คำนวนปริมาณเพื่อเจือจาง
                 client.publish("@msg/htdroponic/htdroponic1","on")
                 client.publish("@msg/greenHouse/water","on")

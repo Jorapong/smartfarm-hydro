@@ -18,13 +18,13 @@ class Light:
         if light < 270 : #แสงมาก
             print('ปิดไฟ')
             client.publish("@msg/hydroponic/light/all","OFF")
-            if ConnectDB.get_status(4,0) == 0:
+            if ConnectDB.get_status(3,0) == 0:
                 print('ปิดสแลนด้านนอก')
                 client.publish("@msg/greenHouse/OS/CLOSE","off")
                 client.publish("@msg/greenHouse/OS/CLOSE","on")
                 #ClosesunscreenOUT
                 return True
-            elif ConnectDB.get_status(4,0) == 1:
+            elif ConnectDB.get_status(3,0) == 1:
                 print('ปิดสแลนด้านใน')
                 client.publish("@msg/greenHouse/IS/CLOSE","off")
                 client.publish("@msg/greenHouse/IS/CLOSE","on")
