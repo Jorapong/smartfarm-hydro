@@ -10,8 +10,8 @@ class Mqttcon:
         return True  
     
     @classmethod
-    def publish(cls,topic):
-        cls.client.publish(topic)
+    def publish(cls,topic,msg):
+        cls.client.publish(topic,msg)
         return True
     
     
