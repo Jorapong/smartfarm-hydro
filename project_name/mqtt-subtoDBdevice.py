@@ -38,14 +38,14 @@ def on_message(client, userdata, message):
     elif (message.topic == topic_list[1][0]and msg=="off"):
         ConnectDB.set_status(0,"light",11111111)
 
-    elif (message.topic == topic_list[3][0] 
-    or message.topic == topic_list[4][0] 
-    or message.topic == topic_list[5][0]):
+    elif (message.topic == topic_list[2][0] 
+    or message.topic == topic_list[3][0] 
+    or message.topic == topic_list[4][0]):
         ConnectDB.set_status(1,"mixer",0)
 
-    elif (message.topic == topic_list[6][0]
-    or message.topic == topic_list[7][0]
-    or message.topic == topic_list[8][0]):
+    elif (message.topic == topic_list[5][0]
+    or message.topic == topic_list[6][0]
+    or message.topic == topic_list[7][0]):
         ConnectDB.set_status(0,"mixer",0)
 
     elif (message.topic == '@msg/pump/pump1' and msg=="on"):
@@ -59,6 +59,7 @@ def on_message(client, userdata, message):
 
     elif (message.topic == '@msg/pump/pump2' and msg=="off"):
         ConnectDB.set_status(0,"pump1",0)
+        
     print("message received " ,msg)  
     print("message topic=",message.topic)
     print("message qos=",message.qos)
