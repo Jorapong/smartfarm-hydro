@@ -14,7 +14,7 @@ def main():
         for value in myresult:
             print('main')
             veget_id=value['veget_id']
-            fertilizer_result = Fertilizer.process_fertilizer(veget_id)
+            fertilizer_result = Fertilizer.process_fertilizer(value)
             light_result = Light.process_light(veget_id)
             #print('fertilizer_result', fertilizer_result)
             print('light_result', light_result)

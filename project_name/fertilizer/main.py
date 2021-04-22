@@ -12,16 +12,17 @@ client.connect(broker_address)
 class Fertilizer:
     @classmethod
     def process_fertilizer(self,veget):
-        ec = ConnectDB.get_sensorvalue("ec",veget['sensorv_id']) #ec ที่วัดได้
-        ph = ConnectDB.get_sensorvalue("ph",veget['sensorv_id']) #pH ที่วัดได้
+        ConnectDB.get_values("light",veget_id)
+        ec = ConnectDB.get_values("ec",veget['veget_id']) #ec ที่วัดได้
+        ph = ConnectDB.get_values("ph",veget['veget_id']) #pH ที่วัดได้
         valueveget = ConnectDB.get_valueveget(veget['veget_id']) #ค่า ที่ต้องการ
         fertilizerintense = ConnectDB.get_fertilizer(veget['fertilizer_id']) #ความเข้มข้นปุ๋ย
-        level = ConnectDB.get_sensorvalue("level",veget['veget_id']) #ระดับน้ำ
-        mixer = ConnectDB.get_sensorvalue("mixer",0) #สถานะถังน้ำ
-        pump1 = ConnectDB.get_sensorvalue("pump1",0) #สถานะถังน้ำ
+        level = ConnectDB.get_values("level",veget['veget_id']) #ระดับน้ำ
+        mixer = ConnectDB.get_status(6,0) #สถานะถังน้ำ
+        pump1 = ConnectDB.get_status(1,0) #สถานะถังน้ำ
         if  (mixer == 1 and pump1==0):
             #ปล่อยนำทื้ง
-            pass
+            passadd
             #client.publish("@msg/pump/pump1","on")
             #client.publish("@msg/pump/pump1","off")
         elif (mixer == 0 and pump1==0):
