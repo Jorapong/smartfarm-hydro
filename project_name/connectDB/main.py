@@ -26,9 +26,9 @@ class ConnectDB:
         return myresult[value]    
     
     @classmethod
-    def set_status(cls,value,name,veget_id):
-        setstatus =(value,name,veget_id)
-        cls._cursor.execute("UPDATE name=%s FROM status where name =%s AND veget_id=%s",setstatus)
+    def set_status(cls,value,status_id,veget_id):
+        sql ="UPDATE status SET status ={} where status_id ={} AND veget_id={}".format(value,status_id,veget_id)
+        cls._cursor.execute(sql)
         cls._cursor.fetchall()
         cls._mydb.commit()
         return (ConnectDB._cursor.rowcount,"record "+name+" Update")

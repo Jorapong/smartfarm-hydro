@@ -19,7 +19,7 @@ def main():
             #print('fertilizer_result', fertilizer_result)
             print('light_result', light_result)
         print('this is main process from Pi')
-        sleep(60*15)
+        sleep(60*10)
 
 if __name__ == '__main__':
     main()
