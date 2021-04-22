@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 import time
 from datetime import datetime, date
 from connectDB import ConnectDB
-
+ConnectDB.connect()
 today = date.today()
 now = datetime.now()
 topic_list = [
