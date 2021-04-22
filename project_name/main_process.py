@@ -20,7 +20,5 @@ def main():
             print('light_result', light_result)
         print('this is main process from Pi')
 
-
-
 if __name__ == '__main__':
     main()
