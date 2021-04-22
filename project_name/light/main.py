@@ -3,7 +3,7 @@ import requests
 from connectDB import ConnectDB
 from mqttsend import Mqttcon
 ConnectDB.connect()
-Mqttcon.mqttconnect()
+Mqttcon.connect()
 class Light:
     @classmethod
     def process_light(cls,veget_id):
