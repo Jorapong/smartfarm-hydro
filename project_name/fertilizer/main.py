@@ -20,6 +20,7 @@ class Fertilizer:
         level = ConnectDB.get_values("level",veget['veget_id']) #ระดับน้ำ
         mixer = ConnectDB.get_status(6,0) #สถานะถังน้ำ
         pump1 = ConnectDB.get_status(1,0) #สถานะถังน้ำ
+        print(ec)
         if  (mixer == 1 and pump1==0):
             #ปล่อยนำทื้ง
             pass
