@@ -28,27 +28,30 @@ class Fertilizer:
             if(ec <= (valueveget['ec']-0.1)):
                 fertilizer = (ec - valueveget['ec'])*100000 #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
                 fertilizerml = fertilizer * 1000
-                client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)#เติมปุ๋ยที่ยังไม่ผสม
-                client.publish("@msg/pump/pump2","on")
+                # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)#เติมปุ๋ยที่ยังไม่ผสม
+                # client.publish("@msg/pump/pump2","on")
                 sleep(10)
                 if(ph <= (valueveget['ph']-0.1)):#phต่ำ
                     waterml = ((fertilizerml/20)/2)#คำนวนหาน้ำที่ต้องเติมตามค่า ph
                 else:
                     waterml = (fertilizerml/20)/2 #คำนวนหาน้ำที่ต้องเติม
-                client.publish("@msg/fertilizer/water/control",waterml)#เติมน้ำเพื่อผสม
-                client.publish("@msg/pump/pump1","on")
-                client.publish("@msg/htdroponic/htdroponic2","on")
-                client.publish("@msg/pump/flow2",fertilizerml)#เติมปุ๋ยที่ผสมแล้ว
-                client.publish("@msg/pump/flow2",3000)#เติมน้ำล้างท่อ
-                client.publish("@msg/htdroponic/htdroponic2","off")
+                # client.publish("@msg/fertilizer/water/control",waterml)#เติมน้ำเพื่อผสม
+                # client.publish("@msg/pump/pump1","on")
+                # client.publish("@msg/htdroponic/htdroponic2","on")
+                # client.publish("@msg/pump/flow2",fertilizerml)#เติมปุ๋ยที่ผสมแล้ว
+                # sleep(20)
+                print(waterml)
+                # client.publish("@msg/pump/flow2",3000)#เติมน้ำล้างท่อ
+                # client.publish("@msg/htdroponic/htdroponic2","off")
                 return True
                 
             elif(ec >= (valueveget['ec']+0.1)):
                 water=ec-valueveget['ec']#คำนวนปริมาณเพื่อเจือจาง
-                client.publish("@msg/htdroponic/htdroponic1","on")
-                client.publish("@msg/greenHouse/water","on")
-                client.publish("@msg/pump/flow2",water)#เติมน้ำเพื่อนเจือจาง
-                client.publish("@msg/pump/pump1","on")
-                client.publish("@msg/htdroponic/htdroponic1","off")
+                print(water)
+                # client.publish("@msg/htdroponic/htdroponic2","on")
+                # client.publish("@msg/greenHouse/water","on")
+                # client.publish("@msg/pump/flow2",water)#เติมน้ำเพื่อนเจือจาง
+                # client.publish("@msg/pump/pump1","on")
+                # client.publish("@msg/htdroponic/htdroponic2","off")
                 return True
         return False

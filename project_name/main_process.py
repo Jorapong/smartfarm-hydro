@@ -3,7 +3,7 @@
 import MySQLdb
 import requests
 from time import sleep
-#from fertilizer import Fertilizer
+from fertilizer import Fertilizer
 from light import Light
 from connectDB import ConnectDB
 ConnectDB.connect()
@@ -14,10 +14,11 @@ def main():
         for value in myresult:
             print('main')
             veget_id=value['veget_id']
-            # fertilizer_result = Fertilizer.process_fertilizer()
+            fertilizer_result = Fertilizer.process_fertilizer(veget_id)
             light_result = Light.process_light(veget_id)
             #print('fertilizer_result', fertilizer_result)
             print('light_result', light_result)
+            print('fertilizer_result', fertilizer_result)
         print('this is main process from Pi')
         sleep(60*10)
 
