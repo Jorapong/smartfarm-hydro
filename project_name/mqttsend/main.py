@@ -9,7 +9,10 @@ class Mqttcon:
         cls.client.username_pw_set("mymqtt", "myraspi")
         return True  
     
-    
+    @classmethod
+    def publish(cls,topic):
+        cls.client.publish(topic)
+        return True
     
     
 
