@@ -13,7 +13,7 @@ class Fertilizer:
     @classmethod
     def process_fertilizer(self,veget):
         ConnectDB.get_values("light",veget['veget_id'])
-        ec = ConnectDB.get_values("ec",veget['veget_id']) #ec ที่วัดได้
+        ec = ConnectDB.get_values("ec",veget['veget_id'])+0.4 #ec ที่วัดได้
         ph = ConnectDB.get_values("ph",veget['veget_id']) #pH ที่วัดได้
         valueveget = ConnectDB.get_valueveget(veget['veget_id']) #ค่า ที่ต้องการ
         fertilizerintense = ConnectDB.get_fertilizer(veget['fertilizer_id']) #ความเข้มข้นปุ๋ย
@@ -22,7 +22,7 @@ class Fertilizer:
         pump1 = ConnectDB.get_status(1,0) #สถานะถังน้ำ
         if  (mixer == 1 and pump1==0):
             #ปล่อยนำทื้ง
-            passadd
+            pass
             #client.publish("@msg/pump/pump1","on")
             #client.publish("@msg/pump/pump1","off")
         elif (mixer == 0 and pump1==0):
