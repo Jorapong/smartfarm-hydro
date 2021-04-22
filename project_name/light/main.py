@@ -46,7 +46,7 @@ class Light:
                     return True
                 elif ConnectDB.get_status(4,0) == 0:
                     print('เปิดไฟ')
-                    client.publish("@msg/hydroponic/light/red","off")
+                    client.publish("@msg/hydroponic/light/red","on")
                     client.publish("@msg/hydroponic/light/blue","on")
                     #Open light
                     return True
