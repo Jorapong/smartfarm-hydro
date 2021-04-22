@@ -12,7 +12,7 @@ client.connect(broker_address)
 class Fertilizer:
     @classmethod
     def process_fertilizer(self,veget):
-        ConnectDB.get_values("light",veget_id)
+        ConnectDB.get_values("light",veget['veget_id'])
         ec = ConnectDB.get_values("ec",veget['veget_id']) #ec ที่วัดได้
         ph = ConnectDB.get_values("ph",veget['veget_id']) #pH ที่วัดได้
         valueveget = ConnectDB.get_valueveget(veget['veget_id']) #ค่า ที่ต้องการ
