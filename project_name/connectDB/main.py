@@ -34,7 +34,7 @@ class ConnectDB:
             cls._mydb.commit()
             return (ConnectDB._cursor.rowcount,"record Update")
         except :
-            print(Error data saving)
+            print('Error data device saving')
     
     @classmethod
     def set_sensorvalue(cls,value):
@@ -44,7 +44,7 @@ class ConnectDB:
             cls._mydb.commit()
             return (ConnectDB._cursor.rowcount,"record sensor_id "+str(value[6])+" Update")
         except:
-            print(Error data saving)
+            print('Error data sensor saving')
 
     @classmethod
     def get_valueveget(cls,veget_id):
