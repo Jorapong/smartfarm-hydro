@@ -27,18 +27,24 @@ class ConnectDB:
     
     @classmethod
     def set_status(cls,value,status_id):
-        sql ="UPDATE status SET status ={} where status_id ={}".format(value,status_id)
-        cls._cursor.execute(sql)
-        cls._cursor.fetchall()
-        cls._mydb.commit()
-        return (ConnectDB._cursor.rowcount,"record Update")
+        try :
+            sql ="UPDATE status SET status ={} where status_id ={}".format(value,status_id)
+            cls._cursor.execute(sql)
+            cls._cursor.fetchall()
+            cls._mydb.commit()
+            return (ConnectDB._cursor.rowcount,"record Update")
+        except :
+            print(Error data saving)
     
     @classmethod
     def set_sensorvalue(cls,value):
-        cls._cursor.execute("UPDATE sensor_value SET ph=%s, ec=%s, flow_pump=%s, light=%s, temp=%s, level=%s where sensorv_id=%s",value)
-        myresult = cls._cursor.fetchall()
-        cls._mydb.commit()
-        return (ConnectDB._cursor.rowcount,"record sensor_id "+str(value[6])+" Update")
+        try :
+            cls._cursor.execute("UPDATE sensor_value SET ph=%s, ec=%s, flow_pump=%s, light=%s, temp=%s, level=%s where sensorv_id=%s",value)
+            myresult = cls._cursor.fetchall()
+            cls._mydb.commit()
+            return (ConnectDB._cursor.rowcount,"record sensor_id "+str(value[6])+" Update")
+        except:
+            print(Error data saving)
 
     @classmethod
     def get_valueveget(cls,veget_id):
