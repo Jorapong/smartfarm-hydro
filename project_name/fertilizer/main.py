@@ -13,10 +13,10 @@ class Fertilizer:
     @classmethod
     def process_fertilizer(self,veget):
         ConnectDB.get_values("light",veget['veget_id'])
-        ec = ConnectDB.get_values("ec",veget['veget_id'])+0.4 #ec ที่วัดได้
+        ec = ConnectDB.get_values("ec",veget['veget_id'])+0.4 #ec ที่วัดได้ 0.7
         ph = ConnectDB.get_values("ph",veget['veget_id']) #pH ที่วัดได้
-        valueveget = ConnectDB.get_valueveget(veget['veget_id']) #ค่า ที่ต้องการ
-        fertilizerintense = ConnectDB.get_fertilizer(veget['fertilizer_id']) #ความเข้มข้นปุ๋ย
+        valueveget = ConnectDB.get_valueveget(veget['veget_id']) #ค่า ที่ต้องการ 1
+        fertilizerintense = ConnectDB.get_fertilizer(veget['fertilizer_id']) #ความเข้มข้นปุ๋ย 0.1 100ml/1000
         level = ConnectDB.get_values("level",veget['veget_id']) #ระดับน้ำ
         mixer = ConnectDB.get_status(6,0) #สถานะถังน้ำ
         pump1 = ConnectDB.get_status(1,0) #สถานะถังน้ำ
@@ -29,7 +29,7 @@ class Fertilizer:
             #client.publish("@msg/pump/pump1","off")
         elif (mixer == 0 and pump1==0):
             if(ec <= (valueveget['ec']-0.1)):
-                fertilizer = (valueveget['ec']-ec)*10000 #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
+                fertilizer = (valueveget['ec']-ec)*100 #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
                 fertilizerml = fertilizer * 1000
                 # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)#เติมปุ๋ยที่ยังไม่ผสม
                 # client.publish("@msg/pump/pump2","on")

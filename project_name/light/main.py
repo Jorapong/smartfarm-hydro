@@ -30,7 +30,8 @@ class Light:
                 client.publish("@msg/greenHouse/IS/CLOSE","on")
                 #ClosesunscreenIN
                 return True
-        elif light >285 : #แสงน้อย
+        return False
+        else : #แสงน้อย
             if ConnectDB.get_status(3,0) == 0:
                 print('เปิดสแลนด้านนอก')
                 client.publish("@msg/greenHouse/OS/OPEN","off")
