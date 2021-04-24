@@ -39,10 +39,10 @@ class ConnectDB:
     @classmethod
     def set_sensorvalue(cls,value):
         try :
-            cls._cursor.execute("UPDATE sensor_value SET ph=%s, ec=%s, flow_pump=%s, light=%s, temp=%s, level=%s where sensorv_id=%s",value)
-            myresult = cls._cursor.fetchall()
-            cls._mydb.commit()
-            return (ConnectDB._cursor.rowcount,"record sensor_id "+str(value[6])+" Update")
+        cls._cursor.execute("UPDATE sensor_value SET ph=%s, ec=%s, flow_pump=%s, light=%s, temp=%s, level=%s where sensorv_id=%s",value)
+        myresult = cls._cursor.fetchall()
+        cls._mydb.commit()
+        return (ConnectDB._cursor.rowcount,"record sensor_id "+str(value[6])+" Update")
         except:
             print('Error data sensor saving')
 

@@ -79,7 +79,7 @@ def on_message(client, userdata, message):
     print("Subscribing to topic","test")
     client.subscribe(topic_list)
     except:
-        print("error Mqtt")
+        print("error M qtt")
 
 while(True):
     #print("Publishing message to topic","mynew/test")
