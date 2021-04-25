@@ -11,11 +11,10 @@ now = datetime.now()
 def on_message(client, userdata, message):
     try:
         text = str(message.payload.decode("utf-8"))
-        text2=text.split("/")
-        print(text2)
-        if text2[0] == "Sensor":
-            valjs = ast.literal_eval(text2[1])
-            valsql = (valjs["ph"],valjs["ec"], valjs["flowpump"], valjs["light"], valjs["temp"], valjs["level"],valjs["Sensor"])
+        print(text)
+        if message.topic == "@msg/hydro/sensor":
+            valjs = ast.literal_eval(text)
+            valsql = (valjs["ph"],valjs["ec"], valjs["lowpump"], valjs["light"], valjs["temp"], valjs["level"],valjs["Sensor"])
             print(ConnectDB.set_sensorvalue(valsql))
     except:
         print("error save sensor")
