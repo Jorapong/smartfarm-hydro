@@ -3,12 +3,14 @@
 import paho.mqtt.client as mqtt
 import time
 import ast
+import json
 from datetime import datetime, date
 from connectDB import ConnectDB
 ConnectDB.connect()
-today = date.today()
-now = datetime.now()
+
 def on_message(client, userdata, message):
+    today = date.today()
+    now = datetime.now()
     try:
         text = str(message.payload.decode("utf-8"))
         print(text)
@@ -16,8 +18,8 @@ def on_message(client, userdata, message):
             valjs = ast.literal_eval(text)
             valsql = (valjs["ph"],valjs["ec"], valjs["lowpump"], valjs["light"], valjs["temp"], valjs["level"],valjs["Sensor"])
             print(ConnectDB.set_sensorvalue(valsql))
-    except:
-        print("error save sensor")
+    except :
+        print('error sensor')        
     print("message received " ,text)  
     print("message topic=",message.topic)
     print("message qos=",message.qos)
@@ -25,6 +27,7 @@ def on_message(client, userdata, message):
     current_time = now.strftime("%H:%M:%S")
     current_date = today.strftime("%d/%m/%Y")
     print("Current  =", current_time, current_date)
+    
 broker_address="192.168.31.50"
 print("creating new instance")
 client = mqtt.Client("RASPI") #create new instance
