@@ -9,13 +9,16 @@ ConnectDB.connect()
 today = date.today()
 now = datetime.now()
 def on_message(client, userdata, message):
-    text = str(message.payload.decode("utf-8"))
-    text2=text.split("/")
-    print(text2)
-    if text2[0] == "Sensor":
-        valjs = ast.literal_eval(text2[1])
-        valsql = (valjs["ph"],valjs["ec"], valjs["flowpump"], valjs["light"], valjs["temp"], valjs["level"],valjs["Sensor"])
-        print(ConnectDB.set_sensorvalue(valsql))
+    try:
+        text = str(message.payload.decode("utf-8"))
+        text2=text.split("/")
+        print(text2)
+        if text2[0] == "Sensor":
+            valjs = ast.literal_eval(text2[1])
+            valsql = (valjs["ph"],valjs["ec"], valjs["flowpump"], valjs["light"], valjs["temp"], valjs["level"],valjs["Sensor"])
+            print(ConnectDB.set_sensorvalue(valsql))
+    except:
+        print("error save sensor")
     print("message received " ,text)  
     print("message topic=",message.topic)
     print("message qos=",message.qos)

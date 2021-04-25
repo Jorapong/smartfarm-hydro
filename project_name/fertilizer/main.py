@@ -29,7 +29,7 @@ class Fertilizer:
             #client.publish("@msg/pump/pump1","off")
         elif (mixer == 0 and pump1==0):
             if(ec <= (valueveget['ec']-0.1)):
-                fertilizer = (valueveget['ec']-ec)*10000 #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
+                fertilizer = (valueveget['ec']-ec)*100000 #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
                 fertilizerml = fertilizer * 1000
                 # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)#เติมปุ๋ยที่ยังไม่ผสม
                 # client.publish("@msg/pump/pump2","on")
