@@ -72,7 +72,7 @@ class Pump:
 
     @classmethod
     def get_status(cls, pump_id):
-        pump_object = cls.get_status(pump_id=pump_id,0)
+        pump_object = ConnectDB.get_status(pump_id=pump_id,0)
 
         # print('pump_object', pump_object)
 
