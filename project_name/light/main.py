@@ -15,7 +15,7 @@ class Light:
     def process_light(cls,veget_id):
         light = ConnectDB.get_values("light",veget_id)
         print(light)
-        if light < 270 : #แสงมาก
+        if light < 265 : #แสงมาก
             print('ปิดไฟ')
             client.publish("@msg/hydroponic/light/all","OFF")
             if ConnectDB.get_status(3,0) == 1:
@@ -30,8 +30,8 @@ class Light:
                 client.publish("@msg/greenHouse/IS/CLOSE","on")
                 #ClosesunscreenIN
                 return True
-        return False
-        else : #แสงน้อย
+            return False
+        else  : #แสงน้อย
             if ConnectDB.get_status(3,0) == 0:
                 print('เปิดสแลนด้านนอก')
                 client.publish("@msg/greenHouse/OS/OPEN","off")

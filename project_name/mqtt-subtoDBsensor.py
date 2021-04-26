@@ -13,14 +13,13 @@ def on_message(client, userdata, message):
     now = datetime.now()
     try:
         text = str(message.payload.decode("utf-8"))
-        print(text)
+        print("message received " ,text)  
         if message.topic == "@msg/hydro/sensor":
             valjs = ast.literal_eval(text)
             valsql = (valjs["ph"],valjs["ec"], valjs["lowpump"], valjs["light"], valjs["temp"], valjs["level"],valjs["Sensor"])
             print(ConnectDB.set_sensorvalue(valsql))
     except :
-        print('error sensor')        
-    print("message received " ,text)  
+        print('error sensor')       
     print("message topic=",message.topic)
     print("message qos=",message.qos)
     print("message retain flag=",message.retain)
