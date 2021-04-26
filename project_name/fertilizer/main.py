@@ -13,7 +13,7 @@ class Fertilizer:
     @classmethod
     def process_fertilizer(self,veget):
         ConnectDB.get_values("light",veget['veget_id'])
-        ec = ConnectDB.get_values("ec",veget['veget_id'])+0.4 #ec ที่วัดได้ 0.7
+        ec = ConnectDB.get_values("ec",veget['veget_id'])+0.1 #ec ที่วัดได้ 0.7
         ph = ConnectDB.get_values("ph",veget['veget_id']) #pH ที่วัดได้
         valueveget = ConnectDB.get_valueveget(veget['veget_id']) #ค่า ที่ต้องการ 1
         fertilizerintense = ConnectDB.get_fertilizer(veget['fertilizer_id']) #ความเข้มข้นปุ๋ย 0.1 100ml/1000
@@ -25,11 +25,11 @@ class Fertilizer:
         if(ec <= (valueveget['ec']-0.1)):
             fertilizersum = (valueveget['ec']-ec)*(100000) #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
             fertilizerpre = (fertilizersum+3000)/2
-            print(fertilizersum)
+            print('ปุ๋ยที่ต้องเติม',fertilizersum)
             # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerpre)#เติมปุ๋ยที่ยังไม่ผสม
             # client.publish("@msg/pump/pump2","on")
             
-            print(fertilizerpre)
+            print("น้ำที่ผสม",fertilizerpre)
             client.publish("@msg/fertilizer/water/control",10000)#เติมน้ำเพื่อผสม
             client.publish("@msg/pump/pump2","on")
             sleep(100)
