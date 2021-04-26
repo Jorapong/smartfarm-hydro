@@ -28,10 +28,11 @@ class Fertilizer:
             print(fertilizersum)
             # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerpre)#เติมปุ๋ยที่ยังไม่ผสม
             # client.publish("@msg/pump/pump2","on")
-            sleep(100)
+            
             print(fertilizerpre)
-            # client.publish("@msg/fertilizer/water/control",fertilizerpre)#เติมน้ำเพื่อผสม
-            # client.publish("@msg/pump/pump1","on")
+            client.publish("@msg/fertilizer/water/control",10000)#เติมน้ำเพื่อผสม
+            client.publish("@msg/pump/pump2","on")
+            sleep(100)
             # client.publish("@msg/htdroponic/htdroponic2","on")
             # client.publish("@msg/pump/flow2",fertilizerml)#เติมปุ๋ยที่ผสมแล้ว
             # sleep(20)
