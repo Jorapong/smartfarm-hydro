@@ -25,15 +25,11 @@ class Fertilizer:
         if(ec <= (valueveget['ec']-0.1)):
             fertilizersum = (valueveget['ec']-ec)*(100000) #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
             fertilizerpre = (fertilizersum+3000)/2
+            print(fertilizersum)
             # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerpre)#เติมปุ๋ยที่ยังไม่ผสม
             # client.publish("@msg/pump/pump2","on")
-            sleep(60)
-            print(fertilizersum)
+            sleep(100)
             print(fertilizerpre)
-            # if(ph <= (valueveget['ph']-0.1)):#phต่ำ
-            #     waterml = ((fertilizerml/20)/2)#คำนวนหาน้ำที่ต้องเติมตามค่า ph
-            # else:
-            #     waterml = (fertilizerml/20)/2 #คำนวนหาน้ำที่ต้องเติม
             # client.publish("@msg/fertilizer/water/control",fertilizerpre)#เติมน้ำเพื่อผสม
             # client.publish("@msg/pump/pump1","on")
             # client.publish("@msg/htdroponic/htdroponic2","on")
