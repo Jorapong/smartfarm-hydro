@@ -19,7 +19,7 @@ topic_list = [
 ]
 
 def on_message(client, userdata, message):
-    try:
+    try :
         msg = str(message.payload.decode("utf-8"))
         if (message.topic == '@msg/greenHouse/OS/OPEN'):
             ConnectDB.set_status(1,3)
@@ -68,6 +68,8 @@ def on_message(client, userdata, message):
         current_time = now.strftime("%H:%M:%S")
         current_date = today.strftime("%d/%m/%Y")
         print("Current  =", current_time, current_date)
+    except:
+        print("error M qtt")
     broker_address="192.168.31.41"
     print("creating new instance")
     client = mqtt.Client("RASPI") #create new instance
