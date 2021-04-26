@@ -63,25 +63,6 @@ class Pump:
         return cls.__DATA[index]
 
     @classmethod
-    def __query(cls, pump_id):
-        data = filter(lambda pump: pump['id'] == f'pump-{pump_id}', cls.__DATA)
-        data = list(data)
-        if not len(data):
-            return False
-        return data[0]
-
-    @classmethod
-    def get_status(cls, pump_id):
-        pump_object = ConnectDB.get_status(pump_id=pump_id,0)
-
-        # print('pump_object', pump_object)
-
-        if not pump_object:
-            return False
-
-        return pump_object.get('status')
-
-    @classmethod
     def handler(cls, pump_id, value):#value= เปิด-ปิด
         
         status = ConnectDB.get_status(pump_id,0)
