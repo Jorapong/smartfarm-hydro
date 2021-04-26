@@ -30,7 +30,7 @@ def on_message(client, userdata, message):
 broker_address="192.168.31.50"
 print("creating new instance")
 client = mqtt.Client("RASPI") #create new instance
-client.username_pw_set("mymqtt", "myraspi")
+client.username_pw_set("smartfarm", "123456788")
 client.on_message=on_message #attach function to callback
 print("connecting to broker")
 client.connect(broker_address) #connect to broker
