@@ -15,7 +15,12 @@ topic_list = [
     ('@msg/fertilizer/bug3/control', 0),
     ('@msg/fertilizer/fertilizer1/control', 0),
     ('@msg/fertilizer/fertilizer2/control', 0),
+<<<<<<< Updated upstream
     ('@msg/fertilizer/fertilizer3/control', 0)
+=======
+    ('@msg/fertilizer/fertilizer3/control', 0),
+    ('@msg/hydroponic/hydroponic3',0)
+>>>>>>> Stashed changes
 ]
 
 def on_message(client, userdata, message):

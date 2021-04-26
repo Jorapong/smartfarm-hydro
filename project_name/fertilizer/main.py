@@ -24,6 +24,7 @@ class Fertilizer:
         print(valueveget['ec'])
         if  (mixer == 1 and pump1==0):
             #ปล่อยนำทื้ง
+<<<<<<< Updated upstream
             pass
             #client.publish("@msg/pump/pump1","on")
             #client.publish("@msg/pump/pump1","off")
@@ -59,4 +60,23 @@ class Fertilizer:
                 # client.publish("@msg/pump/pump1","on")
                 # client.publish("@msg/htdroponic/htdroponic2","off")
                 return True
+=======
+            Mqttcon.mqttconnect("@msg/pump/pump1","ON")
+            Mqttcon.mqttconnect("@msg/pump/pump1","OFF")
+        elif (mixer == 0):
+            if(ec <= (valueveget['ec']-1)):
+                fertilizer = (ec - valueveget['ec'])level
+                fertilizerml = fertilizer * 1000
+                Mqttcon.client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)
+                Mqttcon.client.publish("@msg/pump/pump2","on")
+                waterml = (fertilizerml/20)/2
+                Mqttcon.client.publish("@msg/fertilizer/water/control",waterml)
+                Mqttcon.client.publish("@msg/pump/pump1","on")
+            elif(ec >= (valueveget['ec']+1):
+                Mqttcon.client.publish("@msg/fertilizer/fertilizer1/control",fertilizerml)
+                Mqttcon.client.publish("@msg/pump/pump2","on")
+                waterml = (fertilizerml/20)/2
+                Mqttcon.client.publish("@msg/fertilizer/water/control",waterml)
+                Mqttcon.client.publish("@msg/pump/pump1","on")
+>>>>>>> Stashed changes
         return False
