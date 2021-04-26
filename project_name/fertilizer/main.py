@@ -20,8 +20,8 @@ class Fertilizer:
         level = ConnectDB.get_values("level",veget['veget_id']) #ระดับน้ำ
         mixer = ConnectDB.get_status(6,0) #สถานะถังน้ำ
         pump1 = ConnectDB.get_status(1,0) #สถานะถังน้ำ
-        print(ec)
-        print(valueveget['ec'])
+        print('ค่า',ec)
+        print('ค่าที่ต้องการ',valueveget['ec'])
         if(ec <= (valueveget['ec']-0.1)):
             fertilizersum = (valueveget['ec']-ec)*(100000) #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
             fertilizerpre = (fertilizersum+3000)/2
@@ -42,7 +42,7 @@ class Fertilizer:
             
         elif(ec >= (valueveget['ec']+0.1)):
             water=ec-valueveget['ec']#คำนวนปริมาณเพื่อเจือจาง
-            print(water)
+            print("เติมน้ำ",water)
             # client.publish("@msg/htdroponic/htdroponic2","on")
             # client.publish("@msg/greenHouse/water","on")
             # client.publish("@msg/pump/flow2",water)#เติมน้ำเพื่อนเจือจาง
