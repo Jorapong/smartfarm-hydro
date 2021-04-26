@@ -39,16 +39,16 @@ def on_message(client, userdata, msg):
             status = 1
         else:
             status = 0
-        Pump.handler(pump_id=device_id,value= status)
+        ConnectDB.set_status(status,device_id)
     elif device_type=='greenHouse':
         if splited_topic[3]=='OPEN':
-            starus=1
+            status=1
         elif splited_topic[3]=='CLOSE':
-            starus=1
+            status=1
         if splited_topic[2] =="OS":
-            ConnectDB.set_status(starus,3)
+            ConnectDB.set_status(status,3)
         if splited_topic[2] =="IS":
-            ConnectDB.set_status(starus,4)
+            ConnectDB.set_status(status,4)
     elif device_type=='hydroponic':
         if splited_topic[2]=="light":
             if payload =='on':
