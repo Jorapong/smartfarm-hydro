@@ -24,12 +24,12 @@ class Light:
             client.publish("@msg/greenHouse/IS/CLOSE","on")
             #ClosesunscreenIN
             return True
-        elif light < 80:
+        elif light <= 90 and light >= 70:
             client.publish("@msg/greenHouse/OS/OPEN","off")
             #ClosesunscreenOUT
             print('ปิดสแลนด้านใน')
             client.publish("@msg/greenHouse/IS/CLOSE","on")
-        elif light > 100 : #แสงน้อย
+        elif light > 90 : #แสงน้อย
             print('เปิดสแลนด้านนอก')
             client.publish("@msg/greenHouse/OS/OPEN","on")
             #ClosesunscreenOUT
