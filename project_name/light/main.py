@@ -1,9 +1,6 @@
 
 from connectDB import ConnectDB
-
-#from mqttsend import Mqttcon
 ConnectDB.connect()
-#Mqttcon.connect()
 import paho.mqtt.client as mqtt #import the client1
 broker_address="192.168.31.41" 
 client = mqtt.Client("P1")
@@ -29,6 +26,7 @@ class Light:
             #ClosesunscreenOUT
             print('ปิดสแลนด้านใน')
             client.publish("@msg/greenHouse/IS/CLOSE","on")
+            client.publish("@msg/pump/pump2","on")
         elif light > 90 : #แสงน้อย
             print('เปิดสแลนด้านนอก')
             client.publish("@msg/greenHouse/OS/OPEN","on")

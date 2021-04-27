@@ -1,7 +1,5 @@
 from connectDB import ConnectDB
-#from mqttsend import Mqttcon
 from time import sleep
-#Mqttcon.connect()
 ConnectDB.connect()
 import paho.mqtt.client as mqtt #import the client1
 broker_address="192.168.31.41" 
