@@ -15,34 +15,32 @@ class Light:
     def process_light(cls,veget_id):
         light = ConnectDB.get_values("light",veget_id)
         print(light)
-        if light < 260 : #แสงมาก
+        if light < 70 : #แสงมาก
             print('ปิดไฟ')
-            client.publish("@msg/hydroponic/light/all","off")
+            client.publish("@msg/hydroponic/lsight/all","off")
             print('ปิดสแลนด้านนอก')
             client.publish("@msg/greenHouse/OS/CLOSE","on")
             #ClosesunscreenOUT
             print('ปิดสแลนด้านใน')
             client.publish("@msg/greenHouse/IS/CLOSE","on")
             #ClosesunscreenIN
-            return False
-        elif light < 265:
+            return True
+        elif light < 80:
             client.publish("@msg/greenHouse/OS/OPEN","off")
             #ClosesunscreenOUT
             print('ปิดสแลนด้านใน')
             client.publish("@msg/greenHouse/IS/CLOSE","on")
-        elif light > 265 : #แสงน้อย
+        elif light > 100 : #แสงน้อย
             print('เปิดสแลนด้านนอก')
             client.publish("@msg/greenHouse/OS/OPEN","on")
             #ClosesunscreenOUT
-            return True
             print('เปิดสแลนด้านใน')
             client.publish("@msg/greenHouse/IS/OPEN","on")
             #Closesunscreenin
-            return True
             print('เปิดไฟ')
             client.publish("@msg/hydroponic/light/red","on")
             client.publish("@msg/hydroponic/light/blue","on")
-        return False
+        return True
 
 
 
