@@ -33,7 +33,7 @@ def on_message(client, userdata, msg):
     if device_type == 'pump':
         if splited_topic[2]=="pump1":
             device_id = 1
-        elif splited_topic[2]=="pump2":
+        else:
             device_id = 2
         if(value == 'on'):
             status = 1
