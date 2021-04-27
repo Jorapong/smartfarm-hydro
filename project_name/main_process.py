@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 from time import sleep
-from fertilizer import Fertilizer
+# from fertilizer import Fertilizer
 from light import Light
 from connectDB import ConnectDB
 ConnectDB.connect()
@@ -19,8 +19,9 @@ def main():
                 fertilizer_result = Light.process_fertilizer(value)
                 print('light_result', light_result)
                 print('fertilizer_result', fertilizer_result)
+                sleep(60*10)
             print('this is main process from Pi')
-            sleep(60*10)
+            
         except:
             print('error main process')
 if __name__ == '__main__':

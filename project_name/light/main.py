@@ -23,7 +23,7 @@ class Light:
             #ClosesunscreenIN
             return True
         elif light <= 90 and light >= 70:
-            client.publish("@msg/greenHouse/OS/OPEN","off")
+            client.publish("@msg/greenHouse/OS/OPEN","on")
             #ClosesunscreenOUT
             print('ปิดสแลนด้านใน')
             client.publish("@msg/greenHouse/IS/CLOSE","on")
@@ -38,6 +38,8 @@ class Light:
             client.publish("@msg/hydroponic/light/red","on")
             client.publish("@msg/hydroponic/light/blue","on")
         return True
+
+    @classmethod 
     def process_fertilizer(cls,veget):
         ConnectDB.get_values("light",veget['veget_id'])
         ec = ConnectDB.get_values("ec",veget['veget_id'])+0.1 #ec ที่วัดได้ 0.7
