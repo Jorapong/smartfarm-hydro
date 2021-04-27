@@ -66,7 +66,7 @@ class Light:
             print("เติมน้ำเสร็จ")
             client.publish("@msg/fertilizer", "on")
             client.publish("@msg/htdroponic/htdroponic3","on")
-            client.publish("@msg/pump/flow2",12000)#เติมปุ๋ยที่ผสมแล้ว
+            client.publish("@msg/pump/flow2",22000)#เติมปุ๋ยที่ผสมแล้ว
             # sleep(20)
             # client.publish("@msg/pump/flow2",5000)#เติมน้ำล้างท่อ
             # client.publish("@msg/htdroponic/htdroponic2","off")
