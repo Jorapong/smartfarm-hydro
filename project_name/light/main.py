@@ -1,5 +1,4 @@
-import MySQLdb
-import requests
+
 from connectDB import ConnectDB
 
 #from mqttsend import Mqttcon

@@ -1,8 +1,7 @@
 from connectDB import ConnectDB
-from mqttsend import Mqttcon
-import json
+#from mqttsend import Mqttcon
 from time import sleep
-Mqttcon.connect()
+#Mqttcon.connect()
 ConnectDB.connect()
 import paho.mqtt.client as mqtt #import the client1
 broker_address="192.168.31.41" 
@@ -11,7 +10,7 @@ client.username_pw_set("smartfarm", "123456788")
 client.connect(broker_address)
 class Fertilizer:
     @classmethod
-    def process_fertilizer(self,veget):
+    def process_fertilizer(cls,veget):
         ConnectDB.get_values("light",veget['veget_id'])
         ec = ConnectDB.get_values("ec",veget['veget_id'])+0.1 #ec ที่วัดได้ 0.7
         ph = ConnectDB.get_values("ph",veget['veget_id']) #pH ที่วัดได้
