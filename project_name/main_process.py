@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
-import MySQLdb
-import requests
 from time import sleep
 from fertilizer import Fertilizer
 from light import Light
@@ -18,7 +16,7 @@ def main():
                 print('light work')
                 light_result = Light.process_light(veget_id)
                 print('fertilizer work')
-                fertilizer_result = Fertilizer.process_fertilizer(value)
+                fertilizer_result = Light.process_fertilizer(value)
                 print('light_result', light_result)
                 print('fertilizer_result', fertilizer_result)
             print('this is main process from Pi')
