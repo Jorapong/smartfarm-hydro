@@ -65,9 +65,9 @@ class Light:
             # client.publish("@msg/pump/pump2","off")
             print("เติมน้ำเสร็จ")
             client.publish("@msg/fertilizer", "on")
-            sleep(1)
+            sleep(2)
             client.publish("@msg/hydroponic/hydroponic3","on")
-            sleep(1)
+            sleep(2)
             client.publish("@msg/pump/flow2",1000)#เติมปุ๋ยที่ผสมแล้ว
             # sleep(20)
             # client.publish("@msg/pump/flow2",5000)#เติมน้ำล้างท่อ
