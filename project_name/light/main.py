@@ -61,7 +61,7 @@ class Light:
             # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerpre)#เติมปุ๋ยที่ยังไม่ผสม
             # client.publish("@msg/pump/pump2","on")
             # sleep(10*(fertilizerpre/1000))
-            client.publish("@msg/fertilizer/water/control",fertilizerpre)#เติมน้ำเพื่อผสม
+            client.publish("@msg/fertilizer/water/control",1000)#เติมน้ำเพื่อผสม
             client.publish("@msg/pump/pump2","on")
             print("เวลา",9*(fertilizerpre/1000))
             sleep(9*(fertilizerpre/1000))
@@ -71,20 +71,19 @@ class Light:
             print("น้ำที่ผสม",fertilizerpre)
             client.publish("@msg/pump/pump2","off")
             print("เติมน้ำเสร็จ")
-            # sleep(10)
-            # client.publish("@msg/fertilizer","on")
-            # client.publish("@msg/hydroponic/hydroponic2","on")
-            # client.publish("@msg/pump/flow2",1000)#เติมปุ๋ยที่ผสมแล้ว
-            # client.publish("@msg/pump/pump1","on")
-            # print("เวลา",3+(2*(fertilizerpre/1000)))
-            # sleep(3+(2*(fertilizerpre/1000)))
-            # client.publish("@msg/pump/pump1","off")
-            # client.publish("@msg/fertilizer", "off")
-            # client.publish("@msg/hydroponic/hydroponic2","off")
-            # client.publish("@msg/fertilizer", "on")
-            # client.publish("@msg/hydroponic/hydroponic3","on")
-            # client.publish("@msg/pump/flow2",5000)#เติมน้ำล้างท่อ
-            # client.publish("@msg/htdroponic/htdroponic2","off")
+            sleep(10)
+            client.publish("@msg/fertilizer","on")
+            client.publish("@msg/hydroponic/hydroponic2","on")
+            client.publish("@msg/pump/flow2",1000)#เติมปุ๋ยที่ผสมแล้ว
+            client.publish("@msg/pump/pump1","on")
+            print("เวลา",3+(2*(fertilizerpre/1000)))
+            sleep(3+(2*(fertilizerpre/1000)))
+            client = mqtt.Client("P1")
+            client.username_pw_set("smartfarm", "123456788")
+            client.connect("192.168.31.41")
+            client.publish("@msg/pump/pump1","off")
+            client.publish("@msg/fertilizer", "off")
+            client.publish("@msg/hydroponic/hydroponic2","off")
             return True
             
         elif(ec >= (valueveget['ec']+0.1)):
