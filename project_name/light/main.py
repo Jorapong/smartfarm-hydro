@@ -3,10 +3,9 @@ from connectDB import ConnectDB
 ConnectDB.connect()
 from time import sleep
 import paho.mqtt.client as mqtt #import the client1
-broker_address="192.168.31.41" 
 client = mqtt.Client("P1")
 client.username_pw_set("smartfarm", "123456788")
-client.connect(broker_address)
+client.connect("192.168.31.41")
 class Light:
     @classmethod
     def process_light(cls,veget_id):
@@ -52,6 +51,9 @@ class Light:
         print('ค่า',ec)
         print('ค่าที่ต้องการ',valueveget['ec'])
         if(ec <= (valueveget['ec']-0.1)):
+            client = mqtt.Client("P1")
+            client.username_pw_set("smartfarm", "123456788")
+            client.connect("192.168.31.41")
             #fertilizersum = (valueveget['ec']-ec)*(100000) #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
             fertilizersum = 10000
             fertilizerpre = (fertilizersum+2000)
@@ -66,9 +68,6 @@ class Light:
             client = mqtt.Client("P1")
             client.username_pw_set("smartfarm", "123456788")
             client.connect("192.168.31.41")
-            client = mqtt.Client("serverHydro")
-            client.connect("192.168.31.41")
-            client.username_pw_set("smartfarm", "123456788")
             print("น้ำที่ผสม",fertilizerpre)
             client.publish("@msg/pump/pump2","off")
             print("เติมน้ำเสร็จ")
