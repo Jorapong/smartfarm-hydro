@@ -3,6 +3,7 @@ from connectDB import ConnectDB
 ConnectDB.connect()
 from time import sleep
 import paho.mqtt.client as mqtt #import the client1
+from mqttsend import Mqttcon
 broker_address="192.168.31.41" 
 client = mqtt.Client("P1")
 client.username_pw_set("smartfarm", "123456788")
@@ -63,21 +64,22 @@ class Light:
             client.publish("@msg/pump/pump2","on")
             print("เวลา",9*(fertilizerpre/1000))
             sleep(9*(fertilizerpre/1000))
+            client = mqtt.Client("serverHydro")
+            client.connect("192.168.31.41")
+            client.username_pw_set("smartfarm", "123456788")
             print("น้ำที่ผสม",fertilizerpre)
             client.publish("@msg/pump/pump2","off")
-            client.publish("@msg/pump/pump2","off")
-            client.publish("@msg/pump/pump2","off")
             print("เติมน้ำเสร็จ")
-            sleep(10)
-            client.publish("@msg/fertilizer","on")
-            client.publish("@msg/hydroponic/hydroponic2","on")
-            client.publish("@msg/pump/flow2",1000)#เติมปุ๋ยที่ผสมแล้ว
-            client.publish("@msg/pump/pump1","on")
-            print("เวลา",3+(2*(fertilizerpre/1000)))
-            sleep(3+(2*(fertilizerpre/1000)))
-            client.publish("@msg/pump/pump1","off")
-            client.publish("@msg/fertilizer", "off")
-            client.publish("@msg/hydroponic/hydroponic2","off")
+            # sleep(10)
+            # client.publish("@msg/fertilizer","on")
+            # client.publish("@msg/hydroponic/hydroponic2","on")
+            # client.publish("@msg/pump/flow2",1000)#เติมปุ๋ยที่ผสมแล้ว
+            # client.publish("@msg/pump/pump1","on")
+            # print("เวลา",3+(2*(fertilizerpre/1000)))
+            # sleep(3+(2*(fertilizerpre/1000)))
+            # client.publish("@msg/pump/pump1","off")
+            # client.publish("@msg/fertilizer", "off")
+            # client.publish("@msg/hydroponic/hydroponic2","off")
             # client.publish("@msg/fertilizer", "on")
             # client.publish("@msg/hydroponic/hydroponic3","on")
             # client.publish("@msg/pump/flow2",5000)#เติมน้ำล้างท่อ
@@ -94,5 +96,3 @@ class Light:
             # client.publish("@msg/htdroponic/htdroponic2","off")
             return True
         return False
-
-

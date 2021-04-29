@@ -3,9 +3,8 @@ class Mqttcon:
     client = None
     @classmethod
     def connect(cls):
-        broker_address="192.168.31.41" 
-        cls.client = mqtt.Client("serverHydro")                           #create client object
-        cls.client.connect(cls.broker_address)                                 #establish connection
+        cls.client = mqtt.Client("serverHydro")
+        cls.client.connect("192.168.31.41")
         cls.client.username_pw_set("smartfarm", "123456788")
         return True  
         
