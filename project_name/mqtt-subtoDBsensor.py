@@ -16,7 +16,7 @@ def on_message(client, userdata, message):
         print("message received " ,text)  
         if message.topic == "@msg/hydro/sensor":
             valjs = ast.literal_eval(text)
-            valsql = (valjs["ph"]-10,valjs["ec"]/100, valjs["lowpump"], valjs["light"], valjs["temp"], valjs["level"],valjs["Sensor"])
+            valsql = (valjs["ph"]-10,valjs["ec"], valjs["lowpump"], valjs["light"], valjs["temp"], valjs["level"],valjs["Sensor"])
             print(ConnectDB.set_sensorvalue(valsql))
     except :
         print('error sensor')       
