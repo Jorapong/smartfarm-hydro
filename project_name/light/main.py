@@ -61,9 +61,10 @@ class Light:
             # sleep(10*(fertilizerpre/1000))
             client.publish("@msg/fertilizer/water/control",fertilizerpre)#เติมน้ำเพื่อผสม
             client.publish("@msg/pump/pump2","on")
+            print("เวลา",10*(fertilizerpre/1000))
             sleep(10*(fertilizerpre/1000))
             print("น้ำที่ผสม",fertilizerpre)
-            print("เวลา",10*(fertilizerpre/1000))
+            
             client.publish("@msg/pump/pump2","off")
             print("เติมน้ำเสร็จ")
             client.publish("@msg/fertilizer","on")
