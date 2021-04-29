@@ -12,7 +12,7 @@ class Light:
     def process_light(cls,veget_id):
         light = ConnectDB.get_values("light",veget_id)
         print(light)
-        if light < 70 : #แสงมาก
+        if light < 265 : #แสงมาก
             print('ปิดไฟ')
             client.publish("@msg/hydroponic/lsight/all","off")
             print('ปิดสแลนด้านนอก')
@@ -22,12 +22,12 @@ class Light:
             client.publish("@msg/greenHouse/IS/CLOSE","on")
             #ClosesunscreenIN
             return True
-        elif light <= 90 and light >= 70:
+        elif light <= 265 and light >= 275:
             client.publish("@msg/greenHouse/OS/OPEN","on")
             #ClosesunscreenOUT
             print('ปิดสแลนด้านใน')
             client.publish("@msg/greenHouse/IS/CLOSE","on")
-        elif light > 90 : #แสงน้อย
+        elif light > 275 : #แสงน้อย
             print('เปิดสแลนด้านนอก')
             client.publish("@msg/greenHouse/OS/OPEN","on")
             #ClosesunscreenOUT
@@ -54,7 +54,7 @@ class Light:
         if(ec <= (valueveget['ec']-0.1)):
             #fertilizersum = (valueveget['ec']-ec)*(100000) #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
             fertilizersum = 10000
-            fertilizerpre = (fertilizersum+3000)/2
+            fertilizerpre = (fertilizersum+2000)/2
             print('ปุ๋ยที่ต้องเติม',fertilizersum)
             # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerpre)#เติมปุ๋ยที่ยังไม่ผสม
             # client.publish("@msg/pump/pump2","on")
