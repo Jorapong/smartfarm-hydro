@@ -53,23 +53,24 @@ class Light:
         print('ค่าที่ต้องการ',valueveget['ec'])
         if(ec <= (valueveget['ec']-0.1)):
             #fertilizersum = (valueveget['ec']-ec)*(100000) #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
-            fertilizersum = 20000
+            fertilizersum = 10000
             fertilizerpre = (fertilizersum+2000)
             print('ปุ๋ยที่ต้องเติม',fertilizersum)
             # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerpre)#เติมปุ๋ยที่ยังไม่ผสม
             # client.publish("@msg/pump/pump2","on")
             # sleep(10*(fertilizerpre/1000))
-            # client.publish("@msg/fertilizer/water/control",fertilizerpre)#เติมน้ำเพื่อผสม
-            # client.publish("@msg/pump/pump2","on")
-            # sleep(10*(fertilizerpre/1000))
-            # print("น้ำที่ผสม",fertilizerpre)
-            # print("เวลา",10*(fertilizerpre/1000))
-            # client.publish("@msg/pump/pump2","off")
+            client.publish("@msg/fertilizer/water/control",fertilizerpre)#เติมน้ำเพื่อผสม
+            client.publish("@msg/pump/pump2","on")
+            sleep(10*(fertilizerpre/1000))
+            print("น้ำที่ผสม",fertilizerpre)
+            print("เวลา",10*(fertilizerpre/1000))
+            client.publish("@msg/pump/pump2","off")
             print("เติมน้ำเสร็จ")
             client.publish("@msg/fertilizer","on")
             client.publish("@msg/hydroponic/hydroponic2","on")
             client.publish("@msg/pump/flow2",1000)#เติมปุ๋ยที่ผสมแล้ว
             client.publish("@msg/pump/pump1","on")
+            print("เวลา",3+(2*(fertilizerpre/1000)))
             sleep(3+(2*(fertilizerpre/1000)))
             client.publish("@msg/pump/pump1","off")
             client.publish("@msg/fertilizer", "off")
