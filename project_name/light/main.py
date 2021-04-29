@@ -52,8 +52,9 @@ class Light:
         print('ค่า',ec)
         print('ค่าที่ต้องการ',valueveget['ec'])
         if(ec <= (valueveget['ec']-0.1)):
-            fertilizersum = (valueveget['ec']-ec)*(100000) #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
-            fertilizerpre =10000 #(fertilizersum+3000)/2
+            #fertilizersum = (valueveget['ec']-ec)*(100000) #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
+            fertilizersum = 10000
+            fertilizerpre = (fertilizersum+3000)/2
             print('ปุ๋ยที่ต้องเติม',fertilizersum)
             # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerpre)#เติมปุ๋ยที่ยังไม่ผสม
             # client.publish("@msg/pump/pump2","on")

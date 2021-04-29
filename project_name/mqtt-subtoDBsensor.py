@@ -36,7 +36,7 @@ print("connecting to broker")
 client.connect(broker_address) #connect to broker
 client.loop_start() #start the loop
 print("Subscribing to topic","@msg/hydro/sensor")
-client.subscribe("@msg/hydro/sensor")
+client.subscribe("@msg/#")
 
 while(True):
     #print("Publishing message to topic","mynew/test")
