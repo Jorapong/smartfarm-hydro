@@ -61,8 +61,8 @@ class Light:
             # client.publish("@msg/fertilizer/fertilizer1/control",fertilizerpre)#เติมปุ๋ยที่ยังไม่ผสม
             # client.publish("@msg/pump/pump2","on")
             # sleep(10*(fertilizerpre/1000))
-            client.publish("@msg/fertilizer/water/control",1000)#เติมน้ำเพื่อผสม
-            client.publish("@msg/pump/pump2","on")
+            # client.publish("@msg/fertilizer/water/control",1000)#เติมน้ำเพื่อผสม
+            # client.publish("@msg/pump/pump2","on")
             print("เวลา",9*(fertilizerpre/1000))
             sleep(9*(fertilizerpre/1000))
             client = mqtt.Client("P1")
@@ -71,7 +71,6 @@ class Light:
             print("น้ำที่ผสม",fertilizerpre)
             client.publish("@msg/pump/pump2","off")
             print("เติมน้ำเสร็จ")
-            sleep(10)
             client.publish("@msg/fertilizer","on")
             client.publish("@msg/hydroponic/hydroponic2","on")
             client.publish("@msg/pump/flow2",1000)#เติมปุ๋ยที่ผสมแล้ว
