@@ -60,14 +60,15 @@ class Light:
             print('ปุ๋ยที่ต้องเติม',fertilizersum)
             client.publish("@msg/fertilizer/fertilizer2/control",fertilizerpre)#เติมปุ๋ยที่ยังไม่ผสม
             client.publish("@msg/pump/pump2","on")
-            sleep(10*(fertilizerpre/1000))
+            print("้เวลาเติมปุ๋ย",9*(fertilizerpre/1000))
+            sleep(9*(fertilizerpre/1000))
             client = mqtt.Client("P1")
             client.username_pw_set("smartfarm", "123456788")
             client.connect("192.168.31.41")
             client.publish("@msg/fertilizer/water/control",fertilizerpre)#เติมน้ำเพื่อผสม
             client.publish("@msg/pump/pump2","on")
-            print("เวลา",9*(fertilizerpre/1000))
-            sleep(10*(fertilizerpre/1000))
+            print("เวลาเติมน้ำ",9*(fertilizerpre/1000))
+            sleep(9*(fertilizerpre/1000))
             client = mqtt.Client("P1")
             client.username_pw_set("smartfarm", "123456788")
             client.connect("192.168.31.41")
@@ -81,7 +82,7 @@ class Light:
             client.publish("@msg/pump/flow2",1000)#เติมปุ๋ยที่ผสมแล้ว
             sleep(1)
             client.publish("@msg/pump/pump1","on")
-            print("เวลา",3+(1.5*(fertilizerpre/1000)))
+            print("เวลาเติมน้ำที่ผสม",3+(1.5*(fertilizerpre/1000)))
             sleep(3+(2*(fertilizerpre/1000)))
             client = mqtt.Client("P1")
             client.username_pw_set("smartfarm", "123456788")
