@@ -9,6 +9,9 @@ client.connect("192.168.31.41")
 class Light:
     @classmethod
     def process_light(cls,veget_id):
+        client = mqtt.Client("P1")
+        client.username_pw_set("smartfarm", "123456788")
+        client.connect("192.168.31.41")
         light = ConnectDB.get_values("light",veget_id)
         print(light)
         if light < 265 : #แสงมาก
