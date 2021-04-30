@@ -18,7 +18,7 @@ def main():
             print('fertilizer work')
             # fertilizer_result = Light.process_fertilizer(value)
             print('light_result', light_result)
-            print('fertilizer_result', fertilizer_result)
+            # print('fertilizer_result', fertilizer_result)
             sleep(60*10)
         print('this is main process from Pi')
             
