@@ -55,7 +55,7 @@ class Light:
             client.username_pw_set("smartfarm", "123456788")
             client.connect("192.168.31.41")
             #fertilizersum = (valueveget['ec']-ec)*(100000) #คำนวนหาจำนวนที่ต้องใช้ปุ๋ย
-            fertilizersum = 5000
+            fertilizersum = 10000
             fertilizerpre = (fertilizersum+2000)/2
             print('ปุ๋ยที่ต้องเติม',fertilizersum)
             client.publish("@msg/fertilizer/fertilizer2/control",fertilizerpre)#เติมปุ๋ยที่ยังไม่ผสม
@@ -65,6 +65,7 @@ class Light:
             client = mqtt.Client("P1")
             client.username_pw_set("smartfarm", "123456788")
             client.connect("192.168.31.41")
+            client.publish("@msg/fertilizer/fertilizer2/control",'off')
             client.publish("@msg/fertilizer/water/control",fertilizerpre)#เติมน้ำเพื่อผสม
             client.publish("@msg/pump/pump2","on")
             print("เวลาเติมน้ำ",9*(fertilizerpre/1000))
