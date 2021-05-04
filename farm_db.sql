@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 22, 2021 at 11:46 PM
+-- Generation Time: May 04, 2021 at 08:48 PM
 -- Server version: 10.3.27-MariaDB-0+deb10u1
 -- PHP Version: 7.3.19-1~deb10u1
 
@@ -64,8 +64,8 @@ CREATE TABLE `sensor_value` (
 --
 
 INSERT INTO `sensor_value` (`sensorv_id`, `ph`, `ec`, `flow_pump`, `light`, `level`, `temp`, `veget_id`) VALUES
-(11111111, 7.6, 0.99, 0, 295, 10, -127, 11111111),
-(22222222, 7, 1.2, 22, 434, 0, 0, 0);
+(11111111, 7.99, 2.67, 0, 257, 10, 26.81, 11111111),
+(22222222, 7.99, 2.67, 22, 257, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -87,8 +87,8 @@ CREATE TABLE `status` (
 INSERT INTO `status` (`status_id`, `name`, `status`, `veget_id`) VALUES
 (1, 'pump1', 0, 0),
 (2, 'pump2', 0, 0),
-(3, 'sunscreenOUT', 1, 0),
-(4, 'sunscreenIN', 1, 0),
+(3, 'sunscreenOUT', 0, 0),
+(4, 'sunscreenIN', 0, 0),
 (5, 'light', 0, 11111111),
 (6, 'mixer', 0, 0);
 
@@ -114,7 +114,7 @@ CREATE TABLE `veget` (
 --
 
 INSERT INTO `veget` (`veget_id`, `veget_name`, `veget_old`, `date_start`, `img`, `status_id`, `sensorv_id`, `fertilizer_id`) VALUES
-(11111111, 'สลัด', 30, '2021-02-05', 'https://i1.bpic.cc/file/img-b1/2021/04/07/IMG_20210216_181446-1ce7750d70ddae56d.jpg\" alt=\"IMG_20210216_181446-1ce7750d70ddae56d.jpg', 11111111, 11111111, 1);
+(11111111, 'สลัด', 34, '2021-02-05', 'https://i1.bpic.cc/file/img-b1/2021/04/07/IMG_20210216_181446-1ce7750d70ddae56d.jpg\" alt=\"IMG_20210216_181446-1ce7750d70ddae56d.jpg', 11111111, 11111111, 1);
 
 -- --------------------------------------------------------
 
@@ -135,9 +135,9 @@ CREATE TABLE `veget_value` (
 --
 
 INSERT INTO `veget_value` (`vegetv_id`, `ec`, `date`, `ph`, `veget_id`) VALUES
-(22, 1, '2021-02-18', 7.8, 11111111),
-(33, 1, '2021-02-19', 8, 11111111),
-(44, 1, '2021-02-20', 7.9, 11111111),
+(22, 0.3, '2021-02-18', 7.8, 11111111),
+(33, 0.3, '2021-02-19', 8, 11111111),
+(44, 0.3, '2021-02-20', 7.9, 11111111),
 (11111112, 1, '2021-02-18', 1, 11111111),
 (11111113, 1, '2021-02-19', 0.8, 11111111);
 
