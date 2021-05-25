@@ -29,14 +29,14 @@ def on_message(client, userdata, message):
     
 broker_address="192.168.31.50"
 print("creating new instance")
-client = mqtt.Client("RASPI") #create new instance
+client = mqtt.Client("RASPI2") #create new instance
 client.username_pw_set("mymqtt", "myraspi")
 client.on_message=on_message #attach function to callback
 print("connecting to broker")
 client.connect(broker_address) #connect to broker
 client.loop_start() #start the loop
 print("Subscribing to topic","@msg/hydro/sensor")
-client.subscribe("@msg/#")
+client.subscribe("@msg/hydro/sensor")
 
 while(True):
     #print("Publishing message to topic","mynew/test")
